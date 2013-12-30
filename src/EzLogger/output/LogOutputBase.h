@@ -23,10 +23,14 @@ class LogOutputBase
 	//holds all of the messages to be logged
 	ThreadSafeQueue<LogMessage> inputQueue;
 
+	volatile bool _shouldStop;
+
 	//is run in a different thread.
 	//(every logger object has its own thread)
 	//gets a message out of the queue and then calls acceptMessage, formatMessage, and writeMessage();
 	void run();
+
+	boost::thread _objectThread;
 
 protected:
 

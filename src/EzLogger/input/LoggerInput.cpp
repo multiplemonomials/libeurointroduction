@@ -7,13 +7,14 @@
 
 #include "LoggerInput.h"
 
-logger_custom LoggerInput::custom;
+logger_custom log::custom;
+logger_endl log::endl;
 
 
 LoggerInput::LoggerInput()
 :_tagsToApply(),
  _tagGenerators(),
-  endl(*this)
+ _messageText(this)
 {
 	reInitMessage();
 }
@@ -37,8 +38,10 @@ void LoggerInput::sendMessage()
 		stagingTags.push_back(tagPair.second);
 	}
 
-	BOOST_FOREACH(std::shared_ptr<TagBase>(*generator)(), _tagGenerators)
-		stagingTags.push_back((generator()));
+	BOOST_FOREACH(generatorMapElementType generatorPair, _tagGenerators)
+	{
+		stagingTags.push_back((generatorPair.second()));
+	}
 
 	//construct message and send it
 	std::string messageText = _messageText.str();
@@ -61,21 +64,21 @@ void LoggerInput::addTagTemplate(std::string key, std::shared_ptr<TagBase> tag)
 //adds a function that GENERATES a tag to the logger.
 //whenever a message is logged this function will be called
 //and the result will be added to the message
-void LoggerInput::addTagGenerator(std::shared_ptr<TagBase>(*generator)())
+void LoggerInput::addTagGenerator(std::string key, boost::function<std::shared_ptr<TagBase> ()> generator)
 {
-	_tagGenerators.push_back(generator);
+	_tagGenerators[key] = generator;
 }
 
 //removes the tag from the list of those that are applied to a new object
-void LoggerInput::removeTagTemplate(std::string key)
+void LoggerInput::removeTagTemplate(const std::string & key)
 {
 	_tagsToApply.erase(key);
 }
 
 //remove the tag from the list of tag generators
-void LoggerInput::removeTagGenerator(std::shared_ptr<TagBase>(*generator)())
+void LoggerInput::removeTagGenerator(const std::string & key)
 {
-	_tagGenerators.remove(generator);
+	_tagGenerators.erase(key);
 }
 
 LoggerInput::~LoggerInput()

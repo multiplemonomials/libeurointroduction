@@ -15,6 +15,8 @@ ThreadSafeQueue.h
 Queue template that can be safely shared by multiple threads.
 ------------------------------------------------------------------------------*/
 
+#define BOOST_THREAD_DYN_LINK
+
 #include <queue>
 #include "boost/thread/mutex.hpp"
 #include "boost/thread/condition_variable.hpp"

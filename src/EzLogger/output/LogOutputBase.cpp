@@ -8,22 +8,32 @@
 #include <output/LogOutputBase.h>
 
 LogOutputBase::LogOutputBase()
-:inputQueue()
-{
-	boost::thread objectThread(&LogOutputBase::run, this); //initialize thread IN THE CONSTRUCTOR!!!
+:inputQueue(),
+_shouldStop(false),
+_objectThread(&LogOutputBase::run, this) //initialize thread IN THE CONSTRUCTOR!!!
 	//MUAHAHAHAHAHAAHAHAH
+{
+
 }
 
 LogOutputBase::~LogOutputBase()
 {
-	// TODO Auto-generated destructor stub
+	//in this destructor we have to get the thread out of waiting at its condition_variable.
+	//so we Enqueue an empty LogMessage
+	_shouldStop = true;
+
+	const LogMessage message = LogMessage(std::string(), std::deque<std::shared_ptr<TagBase> >());
+
+	inputQueue.Enqueue(message, true);
+
+	_objectThread.join();
 }
 
 //run by the object's thread
 void LogOutputBase::run()
 {
 	std::cout << "starting output thread" << std::endl;
-	while(true)
+	while(!_shouldStop)
 	{
 		//blocks until there is a message
 		LogMessage message = inputQueue.Dequeue();

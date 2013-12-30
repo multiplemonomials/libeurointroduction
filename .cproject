@@ -48,11 +48,10 @@
 									<listOptionValue builtIn="false" value="/home/jamie/libboost-host/lib"/>
 								</option>
 								<option id="gnu.cpp.link.option.libs.1815599826" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
+									<listOptionValue builtIn="false" value="boost_locale"/>
 									<listOptionValue builtIn="false" value="boost_system"/>
 									<listOptionValue builtIn="false" value="boost_thread"/>
 									<listOptionValue builtIn="false" value="boost_filesystem"/>
-									<listOptionValue builtIn="false" value="boost_log"/>
-									<listOptionValue builtIn="false" value="boost_log_setup"/>
 									<listOptionValue builtIn="false" value="pthread"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.115084511" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">

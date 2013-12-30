@@ -17,27 +17,18 @@
 #include <utility>
 #include <boost/foreach.hpp>
 #include <memory>
+#include <boost/function.hpp>
 
 #include "LogMessage.h"
 #include "LogCore.h"
 
-//predeclare this so it can be used in logger_endl
+//predeclare this so it can be used in log_ostringstream
 class LoggerInput;
 
+//flag to end the line
 class logger_endl
 {
-	LoggerInput & _logger;
 
-public:
-	logger_endl(LoggerInput & logger)
-	:_logger(logger)
-	{
-
-	}
-
-	friend LoggerInput & operator<<(std::ostream & stream, const logger_endl & endl);
-
-	friend LoggerInput & operator<<(LoggerInput & logger, const logger_endl & endl);
 };
 
 //flag to return a stringstream
@@ -46,23 +37,40 @@ class logger_custom
 
 };
 
+namespace log
+{
+	static logger_custom custom;
+
+	static logger_endl endl;
+} /*namespace log*/
+
+class log_ostringstream : public std::ostringstream
+{
+public:
+	std::shared_ptr<LoggerInput> _logger;
+
+	log_ostringstream(LoggerInput * logger)
+	:std::stringstream(),
+	_logger(logger)
+	{
+
+	}
+};
+
 class LoggerInput
 {
 private:
 
 	//for BOOST_FOREACH
 	typedef std::pair<std::string, std::shared_ptr<TagBase> > tagMapElementType;
+	typedef std::pair<std::string, boost::function<std::shared_ptr<TagBase> ()>> generatorMapElementType;
 
 	std::map<std::string, std::shared_ptr<TagBase> > _tagsToApply;
 
-	//holds functions with definition "TagBase foo()"
-	std::list<std::shared_ptr<TagBase>(*)()> _tagGenerators;
+	//holds functions with definition "std::shared_ptr<TagBase> foo()"
+	std::map<std::string, boost::function<std::shared_ptr<TagBase> ()>> _tagGenerators;
 
 public:
-
-	static logger_custom custom;
-
-	logger_endl endl;
 
 	LoggerInput();
 
@@ -82,13 +90,13 @@ public:
 	//adds a function that GENERATES a tag to the logger.
 	//whenever a message is logged this function will be called
 	//and the result will be added to the message
-	void addTagGenerator(std::shared_ptr<TagBase>(*generator)());
+	void addTagGenerator(std::string key, boost::function<std::shared_ptr<TagBase> ()> generator);
 
 	//removes the tag from the list of those that are applied to a new object
-	void removeTagTemplate(std::string key);
+	void removeTagTemplate(const std::string & key);
 
 	//remove the tag from the list of tag generators
-	void removeTagGenerator(std::shared_ptr<TagBase>(*generator)());
+	void removeTagGenerator(const std::string & key);
 
 	//sends the current message to all of the outputs and starts a new one.
 	//automatically called by operator<<(
@@ -96,7 +104,7 @@ public:
 
 	void reInitMessage();
 
-	std::ostringstream _messageText;
+	log_ostringstream _messageText;
 
 	std::deque<std::shared_ptr<TagBase> > stagingTags;
 
