@@ -22,13 +22,23 @@
 #include "LogMessage.h"
 #include "LogCore.h"
 
-//predeclare this so it can be used in log_ostringstream
-class LoggerInput;
+//predeclare this so it can be used in logger_endl
+class LogInput;
 
-//flag to end the line
 class logger_endl
 {
+	LogInput & _logger;
 
+public:
+	logger_endl(LogInput & logger)
+	:_logger(logger)
+	{
+
+	}
+
+	friend LogInput & operator<<(std::ostream & stream, const logger_endl & endl);
+
+	friend LogInput & operator<<(LogInput & logger, const logger_endl & endl);
 };
 
 //flag to return a stringstream
@@ -37,27 +47,7 @@ class logger_custom
 
 };
 
-namespace log
-{
-	static logger_custom custom;
-
-	static logger_endl endl;
-} /*namespace log*/
-
-class log_ostringstream : public std::ostringstream
-{
-public:
-	std::shared_ptr<LoggerInput> _logger;
-
-	log_ostringstream(LoggerInput * logger)
-	:std::stringstream(),
-	_logger(logger)
-	{
-
-	}
-};
-
-class LoggerInput
+class LogInput
 {
 private:
 
@@ -72,9 +62,13 @@ private:
 
 public:
 
-	LoggerInput();
+	static logger_custom custom;
 
-	virtual ~LoggerInput();
+	logger_endl endl;
+
+	LogInput();
+
+	virtual ~LogInput();
 
 	//takes a CONSTRUCTED tag object.
 	//it will added to every tag that this logger makes
@@ -104,7 +98,7 @@ public:
 
 	void reInitMessage();
 
-	log_ostringstream _messageText;
+	std::ostringstream _messageText;
 
 	std::deque<std::shared_ptr<TagBase> > stagingTags;
 
@@ -122,19 +116,19 @@ public:
 //template<>
 //LoggerInput & operator<<<TextTag>(LoggerInput & logger, TextTag const & arg1);
 
-LoggerInput & operator<<(LoggerInput & logger, TagBase * tag);
+LogInput & operator<<(LogInput & logger, TagBase * tag);
 
-LoggerInput & operator<<(std::ostream & stream, const logger_endl & endl);
+LogInput & operator<<(std::ostream & stream, const logger_endl & endl);
 
-LoggerInput & operator<<(LoggerInput & logger, const logger_endl & endl);
+LogInput & operator<<(LogInput & logger, const logger_endl & endl);
 
-std::ostream & operator<<(LoggerInput & logger, const char* arg1);
+std::ostream & operator<<(LogInput & logger, const char* arg1);
 
-std::ostream & operator<<(LoggerInput & logger, const std::string & arg1);
+std::ostream & operator<<(LogInput & logger, const std::string & arg1);
 
-std::ostream & operator<<(LoggerInput & logger, const int & arg1);
+std::ostream & operator<<(LogInput & logger, const int & arg1);
 
-std::ostream & operator<<(LoggerInput & logger, const double & arg1);
+std::ostream & operator<<(LogInput & logger, const double & arg1);
 
-std::ostream & operator<<(LoggerInput & logger, logger_custom & arg1);
+std::ostream & operator<<(LogInput & logger, logger_custom & arg1);
 #endif /* LOGGERINPUT_H_ */

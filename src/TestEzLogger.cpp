@@ -5,18 +5,22 @@
  *      Author: jamie
  */
 
-#include "EzLogger/input/LoggerInput.h"
+#include <input/LogInput.h>
 #include <tags/TextTag.h>
 #include <tags/TimeTag.h>
+#include <tags/DateTag.h>
 #include <tags/SeverityTag.h>
 #include <output/LogOutputBase.h>
 #include <memory>
 #include <unistd.h>
 #include <boost/thread/thread.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
+#include "test/functimer.hpp"
 
-void testBasicOut(LoggerInput * log)
+void testBasicOut(LogInput * log)
 {
+	FUNC_TIMER;
+
 	std::cout << ">> " << "Testing basic output" << std::endl;
 
 	*log << (const char*)("Hello World!") << (*log).endl;
@@ -38,7 +42,7 @@ void testBasicOut(LoggerInput * log)
 
 }
 
-void testCalltimeTags(LoggerInput * log)
+void testCalltimeTags(LogInput * log)
 {
 	std::cout << ">> " << "Testing TextTag" << std::endl;
 
@@ -55,7 +59,7 @@ void testCalltimeTags(LoggerInput * log)
 	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
 }
 
-void testPermanentTagTemplates(LoggerInput * log)
+void testPermanentTagTemplates(LogInput * log)
 {
 	std::cout << ">> " << "Testing Permanent TextTag" << std::endl;
 
@@ -76,23 +80,27 @@ void testPermanentTagTemplates(LoggerInput * log)
 	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
 }
 
-void testPermanentTagGenerators(LoggerInput * log)
+void testPermanentTagGenerators(LogInput * log)
 {
 	std::cout << ">> " << "Testing Permanent TimeTag" << std::endl;
-
 	log->addTagGenerator("time_generator", boost::function<std::shared_ptr<TagBase> ()>(&TimeTag::factory));
 
 	*log << "now" << (*log).endl;
-
 	boost::this_thread::sleep(boost::posix_time::seconds(1));
-
 	*log << "1 second from now" << (*log).endl;
 
 	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
 
-	std::cout << ">>" << "Removing tag generator" << std::endl;
+	log->addTagGenerator("date_generator", boost::function<std::shared_ptr<TagBase> ()>(&DateTag::dt_factory));
+	std::cout << ">>" << "Adding tag generator for DateTag" << std::endl;
+	*log << "is the current date" << (*log).endl;
+
+	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
+
+	std::cout << ">>" << "Removing tag generators" << std::endl;
 
 	log->removeTagGenerator("time_generator");
+	log->removeTagGenerator("date_generator");
 
 	*log << "It should be gone now" << (*log).endl;
 
@@ -101,7 +109,7 @@ void testPermanentTagGenerators(LoggerInput * log)
 
 int main()
 {
-	LoggerInput * log = new LoggerInput();
+	LogInput * log = new LogInput();
 
 	std::shared_ptr<LogOutputBase> output(new LogOutputBase());
 
@@ -111,6 +119,8 @@ int main()
 	testCalltimeTags(log);
 	testPermanentTagTemplates(log);
 	testPermanentTagGenerators(log);
+
+	delete log;
 
 	LogCore::instance().removeOutput("stdio");
 

@@ -16,6 +16,9 @@ class TimeTag : public TagBase
 {
 
 public:
+
+	static const char* format;
+
 	std::time_t _time;
 
 	TimeTag(std::time_t);
