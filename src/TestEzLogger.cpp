@@ -5,87 +5,84 @@
  *      Author: jamie
  */
 
-#include <input/LogInput.h>
-#include <tags/TextTag.h>
-#include <tags/TimeTag.h>
-#include <tags/DateTag.h>
-#include <tags/SeverityTag.h>
-#include <output/LogOutputBase.h>
+#include "LogMacros.h"
+#include <output/JamiesPrettyLogOutput.h>
 #include <memory>
 #include <unistd.h>
 #include <boost/thread/thread.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include "test/functimer.hpp"
 
-void testBasicOut(std::shared_ptr<LogInput> log)
+#define LOG_BASIC(args)																				\
+{																									\
+	std::shared_ptr<LogMessage> logMessage(new LogMessage());	\
+	logMessage->stream() << args; \
+	LogCore::instance().log(logMessage); \
+}
+
+
+void testBasicOut()
 {
 	FUNC_TIMER;
 
 	std::cout << "-- " << "Testing basic output" << std::endl;
-	log->stream() << (const char*)("Hello World!") << std::endl;
+	LOG_BASIC("Hello World")
 
 	std::cout << "-- " << 7 << "Testing number output" << std::endl;
-	log->stream() << 7 << std::endl;
+	LOG_BASIC(7)
 
 	std::cout << "-- " << "Testing std::string output" << std::endl;
 	std::string string("this is a std::string");
-	log->stream() << string << std::endl;
+	LOG_BASIC(string)
+
 
 	std::cout << "-- " << "Testing double output" << std::endl;
-	log->stream() << std::to_string(9.543) << std::endl;
+	LOG_BASIC(9.543)
+
+	std::cout << "-- " << "Testing multiple item output" << std::endl;
+	LOG_BASIC("foo " << "bar")
 
 
 	// Wait for output.
 	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
 }
 
-void testCalltimeTags(std::shared_ptr<LogInput> log)
+//now that basic logging works, use it!
+#define LOG_UNITTEST(args)																				\
+{																									\
+	std::shared_ptr<LogMessage> logMessage(new LogMessage({{"Test", "Test"}}));	\
+	logMessage->stream() << args; \
+	LogCore::instance().log(logMessage); \
+}
+
+void testCalltimeTags()
 {
-	std::cout << "-- " << "Testing TextTag" << std::endl;
-	log->addTag("Text", new TextTag("foo")).stream() << "bar" << std::endl;
-
-	std::cout << "-- " << "Testing SeverityTag" << std::endl;
-	log->addTag("Severity", new SeverityTag(SeverityTag::Severity::UNUSUAL)).stream() << (const char*)("This is weird...") << std::endl;
-
-	std::cout << "-- " << "Testing SeverityTag AND TextTag" << std::endl;
-	log->addTag("Severity", new SeverityTag(SeverityTag::Severity::UNUSUAL)).addTag("Text", new TextTag("foo")).stream() << (const char*)("unusual foo...") << std::endl;
-
+	LOG_UNITTEST("Testing Custom Tag")
+	std::shared_ptr<LogMessage> logMessage(new LogMessage({{"Tag", "Custom"}}));
+	logMessage->stream() << "foo";
+	LogCore::instance().log(logMessage);
 
 	// Wait for output.
 	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
 }
 
-void testPermanentTagTemplates(std::shared_ptr<LogInput> log)
+void testTimeDateTags()
 {
-	std::cout << "-- " << "Testing Permanent TextTag" << std::endl;
-	log->addTagTemplate(std::string("foo"), new TextTag("foo"));
-	log->stream() << "bar" << std::endl;
-	log->stream() << "d" << std::endl;
 
-
-	// Wait for output.
-	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
-
-
-	std::cout << "--" << "Removing tag" << std::endl;
-	log->removeTagTemplate("foo");
-	log->stream() << "It should be gone now" << std::endl;
-
-
-	// Wait for output.
-	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
-}
-
-void testPermanentTagGenerators(std::shared_ptr<LogInput> log)
-{
 	// Report the time on each log entry.
-	std::cout << "-- " << "Testing Permanent TimeTag" << std::endl;
-	log->addTagGenerator("time_generator", boost::function<std::shared_ptr<TagBase>()>(&TimeTag::factory));
-	log->stream() << "now" << std::endl;
-
+	LOG_UNITTEST("Testing Time Tag")
+	{
+		std::shared_ptr<LogMessage> logMessage(new LogMessage({{"Time", currentTime()}})); //function from Tags.h
+		logMessage->stream() << "Now";
+		LogCore::instance().log(logMessage);
+	}
 	// Wait for time to pass.
 	boost::this_thread::sleep(boost::posix_time::seconds(1));
-	log->stream() << "1 second from now" << std::endl;
+	{
+		std::shared_ptr<LogMessage> logMessage(new LogMessage({{"Time", currentTime()}}));
+		logMessage->stream() << "1 second from now";
+		LogCore::instance().log(logMessage);
+	}
 
 
 	// Wait for output.
@@ -93,22 +90,11 @@ void testPermanentTagGenerators(std::shared_ptr<LogInput> log)
 
 
 	// Report the date on each log entry.
-	log->addTagGenerator("date_generator", boost::function<std::shared_ptr<TagBase> ()>(&DateTag::dt_factory));
-	std::cout << "--" << "Adding tag generator for DateTag" << std::endl;
-	log->stream() << "is the current date" << std::endl;
-
-
-	// Wait for output.
-	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
-
-
-	// We can remove the generators.
-	std::cout << "--" << "Removing tag generators" << std::endl;
-	log->removeTagGenerator("time_generator");
-	log->removeTagGenerator("date_generator");
-
-	log->stream() << "It should be gone now" << std::endl;
-
+	LOG_UNITTEST("Testing Date Tag")
+	{
+		std::shared_ptr<LogMessage> logMessage(new LogMessage({{"Date", currentDate()}}));
+		LogCore::instance().log(logMessage);
+	}
 
 	// Wait for output.
 	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
@@ -116,40 +102,24 @@ void testPermanentTagGenerators(std::shared_ptr<LogInput> log)
 
 int main()
 {
-	// Build object for sourcing stuff into the log.
-  	auto log = std::make_shared<LogInput>();
-
 
 	// Add a log sink (emits stuff to std::cout).
-	std::shared_ptr<LogOutputBase> output(new LogOutputBase());
+	std::shared_ptr<JamiesPrettyLogOutput> output(new JamiesPrettyLogOutput());
 	LogCore::instance().addOutput("stdio", output);
 
 
 	// Run logging tests.
-	testBasicOut(log);
-	testCalltimeTags(log);
-	testPermanentTagTemplates(log);
-	testPermanentTagGenerators(log);
+	testBasicOut();
+	testCalltimeTags();
+	testTimeDateTags();
 
 
 	// Verify removeOutput.
 	LogCore::instance().removeOutput("stdio");
-
-//#define LOG_DEBUG(...) LogContainer::instance().logDebug.addTag(new TextTag(__FILENAME__)).addTag(new TextTag(__LINE__)).stream() << __VA_ARGS__
-
 
 	// Try M2MSLAP logging macros.
 	//LOG_DEBUG("This is a debug message.");
 
 	return 0;
 }
-
-
-void foo()
-{
-
-
-}
-}
-
 

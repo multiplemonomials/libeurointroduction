@@ -22,8 +22,9 @@ LogCore& LogCore::instance()
 	return localInstance;
 }
 
-void LogCore::log(LogMessage & message)
+void LogCore::log(std::shared_ptr<LogMessage> message)
 {
+
 	for(std::map<std::string, std::shared_ptr<LogOutputBase> >::iterator it = _outputs.begin(); it != _outputs.end(); ++it)
 	{
 		it->second->enqueueMessage(message);

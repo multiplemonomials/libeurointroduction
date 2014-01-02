@@ -8,10 +8,9 @@
 #ifndef LOGMESSAGE_H_
 #define LOGMESSAGE_H_
 
-#include "tags/TagBase.h"
 #include <memory>
-#include <queue>
 #include <map>
+#include <sstream>
 /**
  * A LogMessage contains all of the data for one message that will be written to the log.
  * It can hold an infinite number of tags and one text message
@@ -19,18 +18,55 @@
  */
 class LogMessage
 {
+	// User-supplied portion of the log message.
+	std::ostringstream 											_stream;
+
 public:
-	std::string _textMessage;
+	typedef std::map<std::string, std::string> 					TagMapType;
+	typedef std::pair<std::string, std::string> 				TagMapElementType;
+	typedef std::initializer_list<std::pair<const std::string, std::string>> InitializerListType;
 
-	typedef std::map<std::string, std::shared_ptr<TagBase>> TagMapType;
-	typedef std::pair<std::string, std::shared_ptr<TagBase>> TagMapElementType;
-	TagMapType _tags;
+private:
+	TagMapType 													_tags;
 
-	LogMessage(std::string message, TagMapType tags);
+public:
 
-	std::ost
+	// Construct from C++ initializer list.
+	LogMessage(InitializerListType const & list);
 
-	virtual ~LogMessage();
+	//construct with no tags
+	LogMessage();
+
+	// Copyable.
+	LogMessage(LogMessage const & message);
+
+
+	// assignable
+	LogMessage & operator=(LogMessage const &) = default;
+
+
+	// Equality operator.
+	bool operator==(LogMessage const & rhs)
+	{
+		return rhs._stream == _stream && rhs._tags == _tags;
+	}
+
+
+	// Return reference to _stream--aloows user to supply content.
+	std::ostringstream & stream()
+	{
+		return _stream;
+	}
+
+	const std::ostringstream& getStream() const
+	{
+		return _stream;
+	}
+
+	const TagMapType& getTags() const
+	{
+		return _tags;
+	}
 };
 
 #endif /* LOGMESSAGE_H_ */

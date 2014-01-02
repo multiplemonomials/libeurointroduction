@@ -22,7 +22,7 @@ LogOutputBase::~LogOutputBase()
 	//so we Enqueue an empty LogMessage
 	_shouldStop = true;
 
-	const LogMessage message = LogMessage(std::string(), LogMessage::TagMapType());
+	std::shared_ptr<LogMessage> message(new LogMessage({{"foo", "bar"}}));
 
 	inputQueue.Enqueue(message, true);
 
@@ -37,15 +37,14 @@ void LogOutputBase::run()
 	while(!_shouldStop)
 	{
 		//blocks until there is a message
-		LogMessage message = inputQueue.Dequeue();
+		std::shared_ptr<LogMessage> messagePtr = inputQueue.Dequeue();
 
 
 		if(!_shouldStop)
 		{
-			if(acceptMessage(message))
+			if(acceptMessage(messagePtr))
 			{
-				std::string textMessage = writeMessage(message);
-				writeString(textMessage);
+				writeMessage(messagePtr);
 			}
 		}
 	}
@@ -53,31 +52,30 @@ void LogOutputBase::run()
 	std::cout << "stopping output thread" << std::endl;
 }
 
-bool LogOutputBase::acceptMessage(LogMessage & message)
+bool LogOutputBase::acceptMessage(std::shared_ptr<LogMessage> messagePtr)
 {
 	return true;
 }
 
-std::string LogOutputBase::writeMessage(LogMessage & message)
+void LogOutputBase::writeMessage(std::shared_ptr<LogMessage> messagePtr)
 {
-	std::stringstream stringstream;
-	BOOST_FOREACH(LogMessage::TagMapElementType tag, message._tags)
+	std::ostringstream ostringstream;
+	BOOST_FOREACH(LogMessage::TagMapElementType tag, messagePtr->getTags())
 	{
-		stringstream << "[" << tag.first << ": " << tag.second->getString() << "] ";
+		ostringstream << "[" << tag.first << ": " << tag.second << "] ";
 	}
 
-	stringstream << message._textMessage;
+	ostringstream << messagePtr->getStream().str();
 
-	std::cout << message << std::endl;
-
-	return stringstream.str();
+	writeString(ostringstream.str());
 }
 
-void LogOutputBase::writeString(std::string message)
+void LogOutputBase::writeString(const std::string & text)
 {
+	std::cout << text << std::endl;
 }
 
-void LogOutputBase::enqueueMessage(LogMessage & message)
+void LogOutputBase::enqueueMessage(std::shared_ptr<LogMessage> messagePtr)
 {
-	inputQueue.Enqueue(message, false);
+	inputQueue.Enqueue(messagePtr, false);
 }

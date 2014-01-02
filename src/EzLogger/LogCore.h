@@ -39,7 +39,7 @@ public:
 
 	//adds the message to the input queue of each LoggingOutput connected
 	//each ThreadSafeQueue makes a copy of it
-	void log(LogMessage & message);
+	void log(std::shared_ptr<LogMessage> message);
 
 	//adds the LoggingOutput to the list of outputs to, ummm, output to
 	void addOutput(std::string name, std::shared_ptr<LogOutputBase> output);

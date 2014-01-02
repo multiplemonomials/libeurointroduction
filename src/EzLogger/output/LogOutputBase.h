@@ -14,14 +14,13 @@
 #include "ThreadSafeQueue.h"
 #include <boost/thread/thread.hpp>
 #include <boost/foreach.hpp>
-#include <tags/TagBase.h>
 #include <memory>
 #include <iostream>
 
 class LogOutputBase
 {
 	//holds all of the messages to be logged
-	ThreadSafeQueue<LogMessage> inputQueue;
+	ThreadSafeQueue<std::shared_ptr<LogMessage>> inputQueue;
 
 	volatile bool _shouldStop;
 
@@ -39,17 +38,18 @@ protected:
 	 *
 	 * acceptMessage returns a boolean that decides whether the output will log this message.
 	 * writeMessage converts the message and tags into a string to output and then puts it where it's supposed to go
+	 * in the default implementation, writeString actually writes a string to the output
 	 */
-	virtual bool acceptMessage(LogMessage & message);
+	virtual bool acceptMessage(std::shared_ptr<LogMessage> messagePtr);
 
-	virtual std::string writeMessage(LogMessage & message);
+	virtual void writeMessage(std::shared_ptr<LogMessage> messagePtr);
 
-	virtual void writeString(std::string message);
+	virtual void writeString(const std::string & text);
 
 public:
 	LogOutputBase();
 
-	void enqueueMessage(LogMessage & message);
+	void enqueueMessage(std::shared_ptr<LogMessage> messagePtr);
 
 	virtual ~LogOutputBase();
 };

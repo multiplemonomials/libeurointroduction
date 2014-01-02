@@ -64,6 +64,22 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<folderInfo id="cdt.managedbuild.config.gnu.exe.debug.1972134180.912785748" name="/" resourcePath="src/EzLogger/input/internal">
+						<toolChain id="cdt.managedbuild.toolchain.gnu.exe.debug.660678370" name="Linux GCC" superClass="cdt.managedbuild.toolchain.gnu.exe.debug" unusedChildren="">
+							<tool id="cdt.managedbuild.tool.gnu.archiver.base.1448786503" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base.1311055373"/>
+							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1902501604" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1373009991">
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.2087110511" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.1283616266" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.1780269310">
+								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.391879710" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.1737087280" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug.1582067464"/>
+							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.51744190" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1665924104"/>
+							<tool id="cdt.managedbuild.tool.gnu.assembler.exe.debug.704631360" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.exe.debug.270210729">
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.2009472447" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
 					<sourceEntries>
 						<entry excluding="src|BLW" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 						<entry excluding="TestBoostLogger1.cpp|BLW" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
@@ -76,19 +92,19 @@
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
 		<project id="BoostLoggerWrapper.cdt.managedbuild.target.gnu.exe.912049451" name="Executable" projectType="cdt.managedbuild.target.gnu.exe"/>
 	</storageModule>
-	<storageModule moduleId="scannerConfiguration">
-		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.exe.debug.1972134180;cdt.managedbuild.config.gnu.exe.debug.1972134180.;cdt.managedbuild.tool.gnu.c.compiler.exe.debug.1780269310;cdt.managedbuild.tool.gnu.c.compiler.input.1050988925">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.exe.debug.1972134180;cdt.managedbuild.config.gnu.exe.debug.1972134180.;cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1373009991;cdt.managedbuild.tool.gnu.cpp.compiler.input.1617577978">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		</scannerConfigBuildInfo>
-	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
 	<storageModule moduleId="refreshScope" versionNumber="2">
 		<configuration configurationName="Debug">
 			<resource resourceType="PROJECT" workspacePath="/BoostLoggerWrapper"/>
 		</configuration>
+	</storageModule>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.exe.debug.1972134180;cdt.managedbuild.config.gnu.exe.debug.1972134180.;cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1373009991;cdt.managedbuild.tool.gnu.cpp.compiler.input.1617577978">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.exe.debug.1972134180;cdt.managedbuild.config.gnu.exe.debug.1972134180.;cdt.managedbuild.tool.gnu.c.compiler.exe.debug.1780269310;cdt.managedbuild.tool.gnu.c.compiler.input.1050988925">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
 	</storageModule>
 </cproject>

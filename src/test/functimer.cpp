@@ -8,8 +8,6 @@ scoped_function_timer::scoped_function_timer(std::string funcName)
 
 scoped_function_timer::~scoped_function_timer()
 {
-
-	std::cout << sizeof(struct timespec) << " " << sizeof(timespec) << std::endl;
 	struct timespec endTime;
 	clock_gettime(CLOCK_REALTIME, &endTime);
 
