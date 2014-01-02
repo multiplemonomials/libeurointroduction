@@ -1,0 +1,1543 @@
+21:07:31 **** Incremental Build of configuration Debug for project EzLogger ****
+make all 
+Building file: ../src/EzLogger/input/LogInput.cpp
+Invoking: GCC C++ Compiler
+g++ -D__GXX_EXPERIMENTAL_CXX0X__ -I/home/jamie/libboost-host/include -I"/home/jamie/dev/workspace/EzLogger/src/EzLogger" -O0 -g3 -Wall -c -fmessage-length=0 -std=gnu++11 -Wno-unused-local-typedefs -MMD -MP -MF"src/EzLogger/input/LogInput.d" -MT"src/EzLogger/input/LogInput.d" -o "src/EzLogger/input/LogInput.o" "../src/EzLogger/input/LogInput.cpp"
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h: In member function ‘virtual std::basic_streambuf<char>::int_type LogInputOutBuf::overflow(std::basic_streambuf<char>::int_type)’:
+../src/EzLogger/input/LogInputOutBuf.h:30:12: error: no match for ‘operator<<’ (operand types are ‘std::shared_ptr<std::basic_ostringstream<char> >’ and ‘char’)
+    _output << z;
+            ^
+../src/EzLogger/input/LogInputOutBuf.h:30:12: note: candidates are:
+../src/EzLogger/input/LogInputOutBuf.h:30:12: note: operator<<(int, int) <built-in>
+../src/EzLogger/input/LogInputOutBuf.h:30:12: note:   no known conversion for argument 1 from ‘std::shared_ptr<std::basic_ostringstream<char> >’ to ‘int’
+In file included from /home/jamie/libboost-host/include/boost/detail/container_fwd.hpp:98:0,
+                 from /home/jamie/libboost-host/include/boost/functional/hash/extensions.hpp:17,
+                 from /home/jamie/libboost-host/include/boost/functional/hash/hash.hpp:540,
+                 from /home/jamie/libboost-host/include/boost/functional/hash.hpp:6,
+                 from /home/jamie/libboost-host/include/boost/thread/detail/thread.hpp:37,
+                 from /home/jamie/libboost-host/include/boost/thread/thread_only.hpp:22,
+                 from /home/jamie/libboost-host/include/boost/thread/thread.hpp:12,
+                 from /home/jamie/dev/workspace/EzLogger/src/EzLogger/output/LogOutputBase.h:15,
+                 from /home/jamie/dev/workspace/EzLogger/src/EzLogger/LogCore.h:18,
+                 from ../src/EzLogger/input/LogInput.h:23,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/complex:524:5: note: template<class _Tp, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::complex<_Tp>&)
+     operator<<(basic_ostream<_CharT, _Traits>& __os, const complex<_Tp>& __x)
+     ^
+/usr/include/c++/4.8/complex:524:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /home/jamie/libboost-host/include/boost/detail/container_fwd.hpp:96:0,
+                 from /home/jamie/libboost-host/include/boost/functional/hash/extensions.hpp:17,
+                 from /home/jamie/libboost-host/include/boost/functional/hash/hash.hpp:540,
+                 from /home/jamie/libboost-host/include/boost/functional/hash.hpp:6,
+                 from /home/jamie/libboost-host/include/boost/thread/detail/thread.hpp:37,
+                 from /home/jamie/libboost-host/include/boost/thread/thread_only.hpp:22,
+                 from /home/jamie/libboost-host/include/boost/thread/thread.hpp:12,
+                 from /home/jamie/dev/workspace/EzLogger/src/EzLogger/output/LogOutputBase.h:15,
+                 from /home/jamie/dev/workspace/EzLogger/src/EzLogger/LogCore.h:18,
+                 from ../src/EzLogger/input/LogInput.h:23,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bitset:1521:5: note: template<class _CharT, class _Traits, long unsigned int _Nb> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::bitset<_Nb>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bitset:1521:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:3312:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::piecewise_linear_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:3312:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:3096:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::piecewise_constant_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:3096:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:2886:5: note: template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::discrete_distribution<_IntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2886:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:2427:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::student_t_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2427:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:2352:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::fisher_f_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2352:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:2188:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::chi_squared_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2188:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:2115:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::lognormal_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2115:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:1819:5: note: template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::binomial_distribution<_IntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1819:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:1552:5: note: template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::poisson_distribution<_IntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1552:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:1347:5: note: template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::negative_binomial_distribution<_IntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1347:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:831:5: note: template<class _RandomNumberEngine, long unsigned int __k, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::shuffle_order_engine<_RandomNumberEngine, __k>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:831:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:702:5: note: template<class _RandomNumberEngine, long unsigned int __p, long unsigned int __r, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::discard_block_engine<_RandomNumberEngine, __p, __r>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:702:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:632:5: note: template<class _UIntType, long unsigned int __w, long unsigned int __s, long unsigned int __r, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::subtract_with_carry_engine<_UIntType, __w, __s, __r>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:632:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:156:5: note: template<class _UIntType, _UIntType __a, _UIntType __c, _UIntType __m, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::linear_congruential_engine<_UIntType, __a, __c, __m>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:156:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:2750:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::extreme_value_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2750:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:2674:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::weibull_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2674:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:1883:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::exponential_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1883:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:2596:5: note: template<class _RealType1, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::gamma_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2596:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:1232:5: note: template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::geometric_distribution<_IntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1232:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:2050:5: note: template<class _RealType1, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::normal_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2050:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:1150:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::bernoulli_distribution&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1150:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:2275:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::cauchy_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2275:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:1088:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::uniform_real_distribution<_IntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1088:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:1029:5: note: template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::uniform_int_distribution<_IntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1029:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:477:5: note: template<class _UIntType1, long unsigned int __w1, long unsigned int __n1, long unsigned int __m1, long unsigned int __r1, _UIntType1 __a1, long unsigned int __u1, _UIntType1 __d1, long unsigned int __s1, _UIntType1 __b1, long unsigned int __t1, _UIntType1 __c1, long unsigned int __l1, _UIntType1 __f1, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::mersenne_twister_engine<_UIntType, __w, __n, __m, __r, __a, __u, __d, __s, __b, __t, __c, __l, __f>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:477:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /usr/include/c++/4.8/random:50:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.h:1277:5: note: template<class _RandomNumberEngine, long unsigned int __w, class _UIntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::independent_bits_engine<_RandomNumberEngine, __w, _UIntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.h:1277:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /usr/include/c++/4.8/memory:82:0,
+                 from ../src/EzLogger/input/LogInput.h:19,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/shared_ptr.h:66:5: note: template<class _Ch, class _Tr, class _Tp, __gnu_cxx::_Lock_policy _Lp> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::__shared_ptr<_Tp, _Lp>&)
+     operator<<(std::basic_ostream<_Ch, _Tr>& __os,
+     ^
+/usr/include/c++/4.8/bits/shared_ptr.h:66:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /home/jamie/dev/workspace/EzLogger/src/EzLogger/tags/TagBase.h:14:0,
+                 from ../src/EzLogger/input/LogInput.h:11,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/ostream:602:5: note: template<class _CharT, class _Traits, class _Tp> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&&, const _Tp&)
+     operator<<(basic_ostream<_CharT, _Traits>&& __os, const _Tp& __x)
+     ^
+/usr/include/c++/4.8/ostream:602:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /home/jamie/dev/workspace/EzLogger/src/EzLogger/tags/TagBase.h:14:0,
+                 from ../src/EzLogger/input/LogInput.h:11,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/ostream:548:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const unsigned char*)
+     operator<<(basic_ostream<char, _Traits>& __out, const unsigned char* __s)
+     ^
+/usr/include/c++/4.8/ostream:548:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<char, _Traits>’
+    _output << z;
+               ^
+In file included from /home/jamie/dev/workspace/EzLogger/src/EzLogger/tags/TagBase.h:14:0,
+                 from ../src/EzLogger/input/LogInput.h:11,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/ostream:543:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const signed char*)
+     operator<<(basic_ostream<char, _Traits>& __out, const signed char* __s)
+     ^
+/usr/include/c++/4.8/ostream:543:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<char, _Traits>’
+    _output << z;
+               ^
+In file included from /home/jamie/dev/workspace/EzLogger/src/EzLogger/tags/TagBase.h:14:0,
+                 from ../src/EzLogger/input/LogInput.h:11,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/ostream:530:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const char*)
+     operator<<(basic_ostream<char, _Traits>& __out, const char* __s)
+     ^
+/usr/include/c++/4.8/ostream:530:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<char, _Traits>’
+    _output << z;
+               ^
+In file included from /usr/include/c++/4.8/ostream:609:0,
+                 from /home/jamie/dev/workspace/EzLogger/src/EzLogger/tags/TagBase.h:14,
+                 from ../src/EzLogger/input/LogInput.h:11,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/ostream.tcc:321:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const char*)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, const char* __s)
+     ^
+/usr/include/c++/4.8/bits/ostream.tcc:321:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /home/jamie/dev/workspace/EzLogger/src/EzLogger/tags/TagBase.h:14:0,
+                 from ../src/EzLogger/input/LogInput.h:11,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/ostream:513:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const _CharT*)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, const _CharT* __s)
+     ^
+/usr/include/c++/4.8/ostream:513:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /home/jamie/dev/workspace/EzLogger/src/EzLogger/tags/TagBase.h:14:0,
+                 from ../src/EzLogger/input/LogInput.h:11,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/ostream:493:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, unsigned char)
+     operator<<(basic_ostream<char, _Traits>& __out, unsigned char __c)
+     ^
+/usr/include/c++/4.8/ostream:493:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<char, _Traits>’
+    _output << z;
+               ^
+In file included from /home/jamie/dev/workspace/EzLogger/src/EzLogger/tags/TagBase.h:14:0,
+                 from ../src/EzLogger/input/LogInput.h:11,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/ostream:488:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, signed char)
+     operator<<(basic_ostream<char, _Traits>& __out, signed char __c)
+     ^
+/usr/include/c++/4.8/ostream:488:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<char, _Traits>’
+    _output << z;
+               ^
+In file included from /home/jamie/dev/workspace/EzLogger/src/EzLogger/tags/TagBase.h:14:0,
+                 from ../src/EzLogger/input/LogInput.h:11,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/ostream:482:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, char)
+     operator<<(basic_ostream<char, _Traits>& __out, char __c)
+     ^
+/usr/include/c++/4.8/ostream:482:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<char, _Traits>’
+    _output << z;
+               ^
+In file included from /home/jamie/dev/workspace/EzLogger/src/EzLogger/tags/TagBase.h:14:0,
+                 from ../src/EzLogger/input/LogInput.h:11,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/ostream:476:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, char)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, char __c)
+     ^
+/usr/include/c++/4.8/ostream:476:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /home/jamie/dev/workspace/EzLogger/src/EzLogger/tags/TagBase.h:14:0,
+                 from ../src/EzLogger/input/LogInput.h:11,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/ostream:471:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, _CharT)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, _CharT __c)
+     ^
+/usr/include/c++/4.8/ostream:471:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+In file included from /usr/include/c++/4.8/string:52:0,
+                 from /home/jamie/dev/workspace/EzLogger/src/EzLogger/tags/TagBase.h:13,
+                 from ../src/EzLogger/input/LogInput.h:11,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/basic_string.h:2753:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::basic_string<_CharT, _Traits, _Alloc>&)
+     operator<<(basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/basic_string.h:2753:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:30:15: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+    _output << z;
+               ^
+../src/EzLogger/input/LogInputOutBuf.h: In member function ‘virtual std::streamsize LogInputOutBuf::xsputn(const char*, std::streamsize)’:
+../src/EzLogger/input/LogInputOutBuf.h:38:11: error: no match for ‘operator<<’ (operand types are ‘std::shared_ptr<std::basic_ostringstream<char> >’ and ‘const char*’)
+   _output << outputPtr;
+           ^
+../src/EzLogger/input/LogInputOutBuf.h:38:11: note: candidates are:
+In file included from /home/jamie/libboost-host/include/boost/detail/container_fwd.hpp:98:0,
+                 from /home/jamie/libboost-host/include/boost/functional/hash/extensions.hpp:17,
+                 from /home/jamie/libboost-host/include/boost/functional/hash/hash.hpp:540,
+                 from /home/jamie/libboost-host/include/boost/functional/hash.hpp:6,
+                 from /home/jamie/libboost-host/include/boost/thread/detail/thread.hpp:37,
+                 from /home/jamie/libboost-host/include/boost/thread/thread_only.hpp:22,
+                 from /home/jamie/libboost-host/include/boost/thread/thread.hpp:12,
+                 from /home/jamie/dev/workspace/EzLogger/src/EzLogger/output/LogOutputBase.h:15,
+                 from /home/jamie/dev/workspace/EzLogger/src/EzLogger/LogCore.h:18,
+                 from ../src/EzLogger/input/LogInput.h:23,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/complex:524:5: note: template<class _Tp, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::complex<_Tp>&)
+     operator<<(basic_ostream<_CharT, _Traits>& __os, const complex<_Tp>& __x)
+     ^
+/usr/include/c++/4.8/complex:524:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /home/jamie/libboost-host/include/boost/detail/container_fwd.hpp:96:0,
+                 from /home/jamie/libboost-host/include/boost/functional/hash/extensions.hpp:17,
+                 from /home/jamie/libboost-host/include/boost/functional/hash/hash.hpp:540,
+                 from /home/jamie/libboost-host/include/boost/functional/hash.hpp:6,
+                 from /home/jamie/libboost-host/include/boost/thread/detail/thread.hpp:37,
+                 from /home/jamie/libboost-host/include/boost/thread/thread_only.hpp:22,
+                 from /home/jamie/libboost-host/include/boost/thread/thread.hpp:12,
+                 from /home/jamie/dev/workspace/EzLogger/src/EzLogger/output/LogOutputBase.h:15,
+                 from /home/jamie/dev/workspace/EzLogger/src/EzLogger/LogCore.h:18,
+                 from ../src/EzLogger/input/LogInput.h:23,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bitset:1521:5: note: template<class _CharT, class _Traits, long unsigned int _Nb> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::bitset<_Nb>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bitset:1521:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:3312:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::piecewise_linear_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:3312:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:3096:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::piecewise_constant_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:3096:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:2886:5: note: template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::discrete_distribution<_IntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2886:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:2427:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::student_t_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2427:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:2352:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::fisher_f_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2352:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:2188:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::chi_squared_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2188:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:2115:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::lognormal_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2115:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:1819:5: note: template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::binomial_distribution<_IntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1819:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:1552:5: note: template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::poisson_distribution<_IntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1552:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:1347:5: note: template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::negative_binomial_distribution<_IntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1347:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:831:5: note: template<class _RandomNumberEngine, long unsigned int __k, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::shuffle_order_engine<_RandomNumberEngine, __k>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:831:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:702:5: note: template<class _RandomNumberEngine, long unsigned int __p, long unsigned int __r, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::discard_block_engine<_RandomNumberEngine, __p, __r>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:702:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:632:5: note: template<class _UIntType, long unsigned int __w, long unsigned int __s, long unsigned int __r, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::subtract_with_carry_engine<_UIntType, __w, __s, __r>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:632:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:156:5: note: template<class _UIntType, _UIntType __a, _UIntType __c, _UIntType __m, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::linear_congruential_engine<_UIntType, __a, __c, __m>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:156:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:2750:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::extreme_value_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2750:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:2674:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::weibull_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2674:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:1883:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::exponential_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1883:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:2596:5: note: template<class _RealType1, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::gamma_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2596:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:1232:5: note: template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::geometric_distribution<_IntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1232:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:2050:5: note: template<class _RealType1, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::normal_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2050:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:1150:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::bernoulli_distribution&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1150:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:2275:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::cauchy_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2275:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:1088:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::uniform_real_distribution<_IntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1088:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:1029:5: note: template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::uniform_int_distribution<_IntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1029:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.tcc:477:5: note: template<class _UIntType1, long unsigned int __w1, long unsigned int __n1, long unsigned int __m1, long unsigned int __r1, _UIntType1 __a1, long unsigned int __u1, _UIntType1 __d1, long unsigned int __s1, _UIntType1 __b1, long unsigned int __t1, _UIntType1 __c1, long unsigned int __l1, _UIntType1 __f1, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::mersenne_twister_engine<_UIntType, __w, __n, __m, __r, __a, __u, __d, __s, __b, __t, __c, __l, __f>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:477:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /usr/include/c++/4.8/random:50:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /home/jamie/libboost-host/include/boost/function/detail/prologue.hpp:13,
+                 from /home/jamie/libboost-host/include/boost/function.hpp:24,
+                 from ../src/EzLogger/input/LogInput.h:20,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/random.h:1277:5: note: template<class _RandomNumberEngine, long unsigned int __w, class _UIntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::independent_bits_engine<_RandomNumberEngine, __w, _UIntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.h:1277:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /usr/include/c++/4.8/memory:82:0,
+                 from ../src/EzLogger/input/LogInput.h:19,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/shared_ptr.h:66:5: note: template<class _Ch, class _Tr, class _Tp, __gnu_cxx::_Lock_policy _Lp> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::__shared_ptr<_Tp, _Lp>&)
+     operator<<(std::basic_ostream<_Ch, _Tr>& __os,
+     ^
+/usr/include/c++/4.8/bits/shared_ptr.h:66:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /home/jamie/dev/workspace/EzLogger/src/EzLogger/tags/TagBase.h:14:0,
+                 from ../src/EzLogger/input/LogInput.h:11,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/ostream:602:5: note: template<class _CharT, class _Traits, class _Tp> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&&, const _Tp&)
+     operator<<(basic_ostream<_CharT, _Traits>&& __os, const _Tp& __x)
+     ^
+/usr/include/c++/4.8/ostream:602:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /home/jamie/dev/workspace/EzLogger/src/EzLogger/tags/TagBase.h:14:0,
+                 from ../src/EzLogger/input/LogInput.h:11,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/ostream:548:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const unsigned char*)
+     operator<<(basic_ostream<char, _Traits>& __out, const unsigned char* __s)
+     ^
+/usr/include/c++/4.8/ostream:548:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<char, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /home/jamie/dev/workspace/EzLogger/src/EzLogger/tags/TagBase.h:14:0,
+                 from ../src/EzLogger/input/LogInput.h:11,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/ostream:543:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const signed char*)
+     operator<<(basic_ostream<char, _Traits>& __out, const signed char* __s)
+     ^
+/usr/include/c++/4.8/ostream:543:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<char, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /home/jamie/dev/workspace/EzLogger/src/EzLogger/tags/TagBase.h:14:0,
+                 from ../src/EzLogger/input/LogInput.h:11,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/ostream:530:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const char*)
+     operator<<(basic_ostream<char, _Traits>& __out, const char* __s)
+     ^
+/usr/include/c++/4.8/ostream:530:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<char, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /usr/include/c++/4.8/ostream:609:0,
+                 from /home/jamie/dev/workspace/EzLogger/src/EzLogger/tags/TagBase.h:14,
+                 from ../src/EzLogger/input/LogInput.h:11,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/ostream.tcc:321:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const char*)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, const char* __s)
+     ^
+/usr/include/c++/4.8/bits/ostream.tcc:321:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /home/jamie/dev/workspace/EzLogger/src/EzLogger/tags/TagBase.h:14:0,
+                 from ../src/EzLogger/input/LogInput.h:11,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/ostream:513:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const _CharT*)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, const _CharT* __s)
+     ^
+/usr/include/c++/4.8/ostream:513:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /home/jamie/dev/workspace/EzLogger/src/EzLogger/tags/TagBase.h:14:0,
+                 from ../src/EzLogger/input/LogInput.h:11,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/ostream:493:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, unsigned char)
+     operator<<(basic_ostream<char, _Traits>& __out, unsigned char __c)
+     ^
+/usr/include/c++/4.8/ostream:493:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<char, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /home/jamie/dev/workspace/EzLogger/src/EzLogger/tags/TagBase.h:14:0,
+                 from ../src/EzLogger/input/LogInput.h:11,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/ostream:488:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, signed char)
+     operator<<(basic_ostream<char, _Traits>& __out, signed char __c)
+     ^
+/usr/include/c++/4.8/ostream:488:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<char, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /home/jamie/dev/workspace/EzLogger/src/EzLogger/tags/TagBase.h:14:0,
+                 from ../src/EzLogger/input/LogInput.h:11,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/ostream:482:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, char)
+     operator<<(basic_ostream<char, _Traits>& __out, char __c)
+     ^
+/usr/include/c++/4.8/ostream:482:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<char, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /home/jamie/dev/workspace/EzLogger/src/EzLogger/tags/TagBase.h:14:0,
+                 from ../src/EzLogger/input/LogInput.h:11,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/ostream:476:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, char)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, char __c)
+     ^
+/usr/include/c++/4.8/ostream:476:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /home/jamie/dev/workspace/EzLogger/src/EzLogger/tags/TagBase.h:14:0,
+                 from ../src/EzLogger/input/LogInput.h:11,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/ostream:471:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, _CharT)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, _CharT __c)
+     ^
+/usr/include/c++/4.8/ostream:471:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+In file included from /usr/include/c++/4.8/string:52:0,
+                 from /home/jamie/dev/workspace/EzLogger/src/EzLogger/tags/TagBase.h:13,
+                 from ../src/EzLogger/input/LogInput.h:11,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/basic_string.h:2753:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::basic_string<_CharT, _Traits, _Alloc>&)
+     operator<<(basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/basic_string.h:2753:5: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:38:14: note:   ‘std::shared_ptr<std::basic_ostringstream<char> >’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+   _output << outputPtr;
+              ^
+../src/EzLogger/input/LogInputOutBuf.h: In constructor ‘LogInputOutBuf::LogInputOutBuf(std::shared_ptr<std::basic_string<char> >)’:
+../src/EzLogger/input/LogInputOutBuf.h:46:17: error: no matching function for call to ‘std::shared_ptr<std::basic_ostringstream<char> >::shared_ptr(std::shared_ptr<std::basic_string<char> >&)’
+  :_output(output)
+                 ^
+../src/EzLogger/input/LogInputOutBuf.h:46:17: note: candidates are:
+In file included from /usr/include/c++/4.8/memory:82:0,
+                 from ../src/EzLogger/input/LogInput.h:19,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/shared_ptr.h:314:2: note: template<class _Alloc, class ... _Args> std::shared_ptr<_Tp>::shared_ptr(std::_Sp_make_shared_tag, const _Alloc&, _Args&& ...)
+  shared_ptr(_Sp_make_shared_tag __tag, const _Alloc& __a,
+  ^
+/usr/include/c++/4.8/bits/shared_ptr.h:314:2: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:46:17: note:   cannot convert ‘output’ (type ‘std::shared_ptr<std::basic_string<char> >’) to type ‘std::_Sp_make_shared_tag’
+  :_output(output)
+                 ^
+In file included from /usr/include/c++/4.8/memory:82:0,
+                 from ../src/EzLogger/input/LogInput.h:19,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/shared_ptr.h:265:17: note: constexpr std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t) [with _Tp = std::basic_ostringstream<char>; std::nullptr_t = std::nullptr_t]
+       constexpr shared_ptr(nullptr_t __p) noexcept
+                 ^
+/usr/include/c++/4.8/bits/shared_ptr.h:265:17: note:   no known conversion for argument 1 from ‘std::shared_ptr<std::basic_string<char> >’ to ‘std::nullptr_t’
+/usr/include/c++/4.8/bits/shared_ptr.h:257:2: note: template<class _Tp1, class _Del> std::shared_ptr<_Tp>::shared_ptr(std::unique_ptr<_Up, _Ep>&&)
+  shared_ptr(std::unique_ptr<_Tp1, _Del>&& __r)
+  ^
+/usr/include/c++/4.8/bits/shared_ptr.h:257:2: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:46:17: note:   ‘std::shared_ptr<std::basic_string<char> >’ is not derived from ‘std::unique_ptr<_Tp, _Dp>’
+  :_output(output)
+                 ^
+In file included from /usr/include/c++/4.8/memory:82:0,
+                 from ../src/EzLogger/input/LogInput.h:19,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/shared_ptr.h:253:2: note: template<class _Tp1> std::shared_ptr<_Tp>::shared_ptr(std::auto_ptr<_Up>&&)
+  shared_ptr(std::auto_ptr<_Tp1>&& __r);
+  ^
+/usr/include/c++/4.8/bits/shared_ptr.h:253:2: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:46:17: note:   ‘std::shared_ptr<std::basic_string<char> >’ is not derived from ‘std::auto_ptr<T>’
+  :_output(output)
+                 ^
+In file included from /usr/include/c++/4.8/memory:82:0,
+                 from ../src/EzLogger/input/LogInput.h:19,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/shared_ptr.h:248:11: note: template<class _Tp1> std::shared_ptr<_Tp>::shared_ptr(const std::weak_ptr<_Tp1>&)
+  explicit shared_ptr(const weak_ptr<_Tp1>& __r)
+           ^
+/usr/include/c++/4.8/bits/shared_ptr.h:248:11: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:46:17: note:   ‘std::shared_ptr<std::basic_string<char> >’ is not derived from ‘const std::weak_ptr<_Tp>’
+  :_output(output)
+                 ^
+In file included from /usr/include/c++/4.8/memory:82:0,
+                 from ../src/EzLogger/input/LogInput.h:19,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/shared_ptr.h:236:2: note: template<class _Tp1, class> std::shared_ptr<_Tp>::shared_ptr(std::shared_ptr<_Tp1>&&)
+  shared_ptr(shared_ptr<_Tp1>&& __r) noexcept
+  ^
+/usr/include/c++/4.8/bits/shared_ptr.h:236:2: note:   template argument deduction/substitution failed:
+/usr/include/c++/4.8/bits/shared_ptr.h:234:31: error: no type named ‘type’ in ‘struct std::enable_if<false, void>’
+       template<typename _Tp1, typename = typename
+                               ^
+/usr/include/c++/4.8/bits/shared_ptr.h:226:7: note: std::shared_ptr<_Tp>::shared_ptr(std::shared_ptr<_Tp>&&) [with _Tp = std::basic_ostringstream<char>]
+       shared_ptr(shared_ptr&& __r) noexcept
+       ^
+/usr/include/c++/4.8/bits/shared_ptr.h:226:7: note:   no known conversion for argument 1 from ‘std::shared_ptr<std::basic_string<char> >’ to ‘std::shared_ptr<std::basic_ostringstream<char> >&&’
+/usr/include/c++/4.8/bits/shared_ptr.h:218:2: note: template<class _Tp1, class> std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Tp1>&)
+  shared_ptr(const shared_ptr<_Tp1>& __r) noexcept
+  ^
+/usr/include/c++/4.8/bits/shared_ptr.h:218:2: note:   template argument deduction/substitution failed:
+/usr/include/c++/4.8/bits/shared_ptr.h:216:31: error: no type named ‘type’ in ‘struct std::enable_if<false, void>’
+       template<typename _Tp1, typename = typename
+                               ^
+/usr/include/c++/4.8/bits/shared_ptr.h:206:2: note: template<class _Tp1> std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Tp1>&, _Tp*)
+  shared_ptr(const shared_ptr<_Tp1>& __r, _Tp* __p) noexcept
+  ^
+/usr/include/c++/4.8/bits/shared_ptr.h:206:2: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:46:17: note:   candidate expects 2 arguments, 1 provided
+  :_output(output)
+                 ^
+In file included from /usr/include/c++/4.8/memory:82:0,
+                 from ../src/EzLogger/input/LogInput.h:19,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/shared_ptr.h:184:2: note: template<class _Deleter, class _Alloc> std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t, _Deleter, _Alloc)
+  shared_ptr(nullptr_t __p, _Deleter __d, _Alloc __a)
+  ^
+/usr/include/c++/4.8/bits/shared_ptr.h:184:2: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:46:17: note:   cannot convert ‘output’ (type ‘std::shared_ptr<std::basic_string<char> >’) to type ‘std::nullptr_t’
+  :_output(output)
+                 ^
+In file included from /usr/include/c++/4.8/memory:82:0,
+                 from ../src/EzLogger/input/LogInput.h:19,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/shared_ptr.h:165:2: note: template<class _Tp1, class _Deleter, class _Alloc> std::shared_ptr<_Tp>::shared_ptr(_Tp1*, _Deleter, _Alloc)
+  shared_ptr(_Tp1* __p, _Deleter __d, _Alloc __a)
+  ^
+/usr/include/c++/4.8/bits/shared_ptr.h:165:2: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:46:17: note:   mismatched types ‘_Tp1*’ and ‘std::shared_ptr<std::basic_string<char> >’
+  :_output(output)
+                 ^
+In file included from /usr/include/c++/4.8/memory:82:0,
+                 from ../src/EzLogger/input/LogInput.h:19,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/shared_ptr.h:146:2: note: template<class _Deleter> std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t, _Deleter)
+  shared_ptr(nullptr_t __p, _Deleter __d)
+  ^
+/usr/include/c++/4.8/bits/shared_ptr.h:146:2: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:46:17: note:   cannot convert ‘output’ (type ‘std::shared_ptr<std::basic_string<char> >’) to type ‘std::nullptr_t’
+  :_output(output)
+                 ^
+In file included from /usr/include/c++/4.8/memory:82:0,
+                 from ../src/EzLogger/input/LogInput.h:19,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/shared_ptr.h:129:2: note: template<class _Tp1, class _Deleter> std::shared_ptr<_Tp>::shared_ptr(_Tp1*, _Deleter)
+  shared_ptr(_Tp1* __p, _Deleter __d)
+  ^
+/usr/include/c++/4.8/bits/shared_ptr.h:129:2: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:46:17: note:   mismatched types ‘_Tp1*’ and ‘std::shared_ptr<std::basic_string<char> >’
+  :_output(output)
+                 ^
+In file included from /usr/include/c++/4.8/memory:82:0,
+                 from ../src/EzLogger/input/LogInput.h:19,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/shared_ptr.h:112:11: note: template<class _Tp1> std::shared_ptr<_Tp>::shared_ptr(_Tp1*)
+  explicit shared_ptr(_Tp1* __p)
+           ^
+/usr/include/c++/4.8/bits/shared_ptr.h:112:11: note:   template argument deduction/substitution failed:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:46:17: note:   mismatched types ‘_Tp1*’ and ‘std::shared_ptr<std::basic_string<char> >’
+  :_output(output)
+                 ^
+In file included from /usr/include/c++/4.8/memory:82:0,
+                 from ../src/EzLogger/input/LogInput.h:19,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/shared_ptr.h:103:7: note: std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Tp>&) [with _Tp = std::basic_ostringstream<char>]
+       shared_ptr(const shared_ptr&) noexcept = default;
+       ^
+/usr/include/c++/4.8/bits/shared_ptr.h:103:7: note:   no known conversion for argument 1 from ‘std::shared_ptr<std::basic_string<char> >’ to ‘const std::shared_ptr<std::basic_ostringstream<char> >&’
+/usr/include/c++/4.8/bits/shared_ptr.h:100:17: note: constexpr std::shared_ptr<_Tp>::shared_ptr() [with _Tp = std::basic_ostringstream<char>]
+       constexpr shared_ptr() noexcept
+                 ^
+/usr/include/c++/4.8/bits/shared_ptr.h:100:17: note:   candidate expects 0 arguments, 1 provided
+In file included from ../src/EzLogger/input/LogInput.h:24:0,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOstream.h: In constructor ‘LogInputOstream::LogInputOstream(std::shared_ptr<std::basic_ostringstream<char> >, boost::function<void(LogInput*)>, LogInput&)’:
+../src/EzLogger/input/LogInputOstream.h:35:18: error: no matching function for call to ‘LogInputOutBuf::LogInputOutBuf(std::shared_ptr<std::basic_ostringstream<char> >&)’
+    _logger(logger)
+                  ^
+../src/EzLogger/input/LogInputOstream.h:35:18: note: candidate is:
+In file included from ../src/EzLogger/input/LogInputOstream.h:11:0,
+                 from ../src/EzLogger/input/LogInput.h:24,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+../src/EzLogger/input/LogInputOutBuf.h:45:11: note: LogInputOutBuf::LogInputOutBuf(std::shared_ptr<std::basic_string<char> >)
+  explicit LogInputOutBuf(std::shared_ptr<std::string> output)
+           ^
+../src/EzLogger/input/LogInputOutBuf.h:45:11: note:   no known conversion for argument 1 from ‘std::shared_ptr<std::basic_ostringstream<char> >’ to ‘std::shared_ptr<std::basic_string<char> >’
+In file included from /usr/include/c++/4.8/bits/shared_ptr.h:52:0,
+                 from /usr/include/c++/4.8/memory:82,
+                 from ../src/EzLogger/input/LogInput.h:19,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/usr/include/c++/4.8/bits/shared_ptr_base.h: In instantiation of ‘std::__shared_ptr<_Tp, _Lp>::__shared_ptr(_Tp1*) [with _Tp1 = std::basic_string<char>; _Tp = std::basic_ostringstream<char>; __gnu_cxx::_Lock_policy _Lp = (__gnu_cxx::_Lock_policy)2u]’:
+/usr/include/c++/4.8/bits/shared_ptr.h:113:32:   required from ‘std::shared_ptr<_Tp>::shared_ptr(_Tp1*) [with _Tp1 = std::basic_string<char>; _Tp = std::basic_ostringstream<char>]’
+../src/EzLogger/input/LogInput.cpp:15:95:   required from here
+/usr/include/c++/4.8/bits/shared_ptr_base.h:768:39: error: cannot convert ‘std::basic_string<char>*’ to ‘std::basic_ostringstream<char>*’ in initialization
+         : _M_ptr(__p), _M_refcount(__p)
+                                       ^
+In file included from /home/jamie/libboost-host/include/boost/system/system_error.hpp:14:0,
+                 from /home/jamie/libboost-host/include/boost/thread/exceptions.hpp:22,
+                 from /home/jamie/libboost-host/include/boost/thread/pthread/mutex.hpp:12,
+                 from /home/jamie/libboost-host/include/boost/thread/mutex.hpp:16,
+                 from /home/jamie/dev/workspace/EzLogger/src/EzLogger/LogCore.h:11,
+                 from ../src/EzLogger/input/LogInput.h:23,
+                 from ../src/EzLogger/input/LogInput.cpp:8:
+/home/jamie/libboost-host/include/boost/system/error_code.hpp: At global scope:
+/home/jamie/libboost-host/include/boost/system/error_code.hpp:222:36: warning: ‘boost::system::posix_category’ defined but not used [-Wunused-variable]
+     static const error_category &  posix_category = generic_category();
+                                    ^
+/home/jamie/libboost-host/include/boost/system/error_code.hpp:223:36: warning: ‘boost::system::errno_ecat’ defined but not used [-Wunused-variable]
+     static const error_category &  errno_ecat     = generic_category();
+                                    ^
+/home/jamie/libboost-host/include/boost/system/error_code.hpp:224:36: warning: ‘boost::system::native_ecat’ defined but not used [-Wunused-variable]
+     static const error_category &  native_ecat    = system_category();
+                                    ^
+make: *** [src/EzLogger/input/LogInput.o] Error 1
+
+21:07:58 Build Finished (took 26s.663ms)
+
