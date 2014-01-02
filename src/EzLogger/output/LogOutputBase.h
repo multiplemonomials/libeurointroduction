@@ -27,7 +27,7 @@ class LogOutputBase
 
 	//is run in a different thread.
 	//(every logger object has its own thread)
-	//gets a message out of the queue and then calls acceptMessage, formatMessage, and writeMessage();
+	//gets a message out of the queue and then calls acceptMessage, formatMessage, and writeString();
 	void run();
 
 	boost::thread _objectThread;
@@ -38,19 +38,18 @@ protected:
 	 * These three functions are designed to be overridden by whoever subclasses this base
 	 *
 	 * acceptMessage returns a boolean that decides whether the output will log this message.
-	 * formatMessage converts the message and tags into a string to output.
-	 * writeMessage puts the line of text wherever its final destination is.
+	 * writeMessage converts the message and tags into a string to output and then puts it where it's supposed to go
 	 */
 	virtual bool acceptMessage(LogMessage & message);
 
-	virtual std::string formatMessage(LogMessage & message);
+	virtual std::string writeMessage(LogMessage & message);
 
-	virtual void writeMessage(std::string message);
+	virtual void writeString(std::string message);
 
 public:
 	LogOutputBase();
 
-	void enqueueLine(LogMessage & message);
+	void enqueueMessage(LogMessage & message);
 
 	virtual ~LogOutputBase();
 };

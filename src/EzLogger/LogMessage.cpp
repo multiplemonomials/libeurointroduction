@@ -7,7 +7,7 @@
 
 #include "LogMessage.h"
 
-LogMessage::LogMessage(std::string message, std::deque<std::shared_ptr<TagBase> > tags)
+LogMessage::LogMessage(std::string message, TagMapType tags)
 :_textMessage(message),
  _tags(tags)
 {

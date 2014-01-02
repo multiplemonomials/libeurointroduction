@@ -11,7 +11,7 @@ LogOutputBase::LogOutputBase()
 :inputQueue(),
 _shouldStop(false),
 _objectThread(&LogOutputBase::run, this) //initialize thread IN THE CONSTRUCTOR!!!
-	//MUAHAHAHAHAHAAHAHAH
+	//MUAHAHAHAHAHAHAHAH
 {
 
 }
@@ -22,7 +22,7 @@ LogOutputBase::~LogOutputBase()
 	//so we Enqueue an empty LogMessage
 	_shouldStop = true;
 
-	const LogMessage message = LogMessage(std::string(), std::deque<std::shared_ptr<TagBase> >());
+	const LogMessage message = LogMessage(std::string(), LogMessage::TagMapType());
 
 	inputQueue.Enqueue(message, true);
 
@@ -33,17 +33,24 @@ LogOutputBase::~LogOutputBase()
 void LogOutputBase::run()
 {
 	std::cout << "starting output thread" << std::endl;
+
 	while(!_shouldStop)
 	{
 		//blocks until there is a message
 		LogMessage message = inputQueue.Dequeue();
 
-		if(acceptMessage(message))
+
+		if(!_shouldStop)
 		{
-			std::string textMessage = formatMessage(message);
-			writeMessage(textMessage);
+			if(acceptMessage(message))
+			{
+				std::string textMessage = writeMessage(message);
+				writeString(textMessage);
+			}
 		}
 	}
+
+	std::cout << "stopping output thread" << std::endl;
 }
 
 bool LogOutputBase::acceptMessage(LogMessage & message)
@@ -51,25 +58,26 @@ bool LogOutputBase::acceptMessage(LogMessage & message)
 	return true;
 }
 
-std::string LogOutputBase::formatMessage(LogMessage & message)
+std::string LogOutputBase::writeMessage(LogMessage & message)
 {
 	std::stringstream stringstream;
-	BOOST_FOREACH(std::shared_ptr<TagBase> tag, message._tags)
+	BOOST_FOREACH(LogMessage::TagMapElementType tag, message._tags)
 	{
-		stringstream << "[" << tag->getString() << "] ";
+		stringstream << "[" << tag.first << ": " << tag.second->getString() << "] ";
 	}
 
 	stringstream << message._textMessage;
 
+	std::cout << message << std::endl;
+
 	return stringstream.str();
 }
 
-void LogOutputBase::writeMessage(std::string message)
+void LogOutputBase::writeString(std::string message)
 {
-	std::cout << message << std::endl;
 }
 
-void LogOutputBase::enqueueLine(LogMessage & message)
+void LogOutputBase::enqueueMessage(LogMessage & message)
 {
 	inputQueue.Enqueue(message, false);
 }

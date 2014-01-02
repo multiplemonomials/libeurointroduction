@@ -21,40 +21,16 @@
 
 #include "LogMessage.h"
 #include "LogCore.h"
-
-//predeclare this so it can be used in logger_endl
-class LogInput;
-
-class logger_endl
-{
-	LogInput & _logger;
-
-public:
-	logger_endl(LogInput & logger)
-	:_logger(logger)
-	{
-
-	}
-
-	friend LogInput & operator<<(std::ostream & stream, const logger_endl & endl);
-
-	friend LogInput & operator<<(LogInput & logger, const logger_endl & endl);
-};
-
-//flag to return a stringstream
-class logger_custom
-{
-
-};
+#include "LogInputOstream.h"
 
 class LogInput
 {
 private:
 
 	//for BOOST_FOREACH
-	typedef std::pair<std::string, std::shared_ptr<TagBase> > tagMapElementType;
 	typedef std::pair<std::string, boost::function<std::shared_ptr<TagBase> ()>> generatorMapElementType;
 
+	// "Persistent" tags that will be applied to every log message.
 	std::map<std::string, std::shared_ptr<TagBase> > _tagsToApply;
 
 	//holds functions with definition "std::shared_ptr<TagBase> foo()"
@@ -62,9 +38,17 @@ private:
 
 public:
 
-	static logger_custom custom;
+	// Text that comprises the next log message.
+	std::shared_ptr<std::ostringstream> _messageStreamPtr;
 
-	logger_endl endl;
+private:
+
+	LogInputOstream _inputStream;
+
+public:
+
+	// "Ephemeral" tags that will be deleted after the next log message.
+	LogMessage::TagMapType _stagingTags;
 
 	LogInput();
 
@@ -75,7 +59,7 @@ public:
 	//until it is removed
 	void addTagTemplate(std::string key, std::shared_ptr<TagBase> tag);
 
-	//overload so you can use addTagTemplate(new SomeTag()) instead
+	//overload allowing addTagTemplate(new SomeTag()) instead
 	void addTagTemplate(std::string key, TagBase * tag)
 	{
 		addTagTemplate(key, std::shared_ptr<TagBase>(tag));
@@ -92,43 +76,32 @@ public:
 	//remove the tag from the list of tag generators
 	void removeTagGenerator(const std::string & key);
 
+	//add a tag to the list of tags
+	LogInput & addTag(std::string const & key, std::shared_ptr<TagBase> tag)
+	{
+		_stagingTags[key] = tag;
+
+		return *this;
+	}
+
+	//pointer overload for above
+	LogInput & addTag(std::string const & key, TagBase * tag)
+	{
+		return addTag(key, std::shared_ptr<TagBase>(tag));
+	}
+
 	//sends the current message to all of the outputs and starts a new one.
 	//automatically called by operator<<(
 	void sendMessage();
 
 	void reInitMessage();
 
-	std::ostringstream _messageText;
-
-	std::deque<std::shared_ptr<TagBase> > stagingTags;
+	//gets a stream for making the log message
+	LogInputOstream & stream()
+	{
+		return _inputStream;
+	}
 
 };
 
-//// General template operator.
-//template<typename T>
-//LoggerInput & operator<<(LoggerInput & logger, T const & arg1);
-//
-//// Specialization for logger_endl.
-//template<>
-//LoggerInput & operator<< <logger_endl>(LoggerInput & stringstream, logger_endl const & arg1);
-//
-//// Specialization for TagBase.
-//template<>
-//LoggerInput & operator<<<TextTag>(LoggerInput & logger, TextTag const & arg1);
-
-LogInput & operator<<(LogInput & logger, TagBase * tag);
-
-LogInput & operator<<(std::ostream & stream, const logger_endl & endl);
-
-LogInput & operator<<(LogInput & logger, const logger_endl & endl);
-
-std::ostream & operator<<(LogInput & logger, const char* arg1);
-
-std::ostream & operator<<(LogInput & logger, const std::string & arg1);
-
-std::ostream & operator<<(LogInput & logger, const int & arg1);
-
-std::ostream & operator<<(LogInput & logger, const double & arg1);
-
-std::ostream & operator<<(LogInput & logger, logger_custom & arg1);
 #endif /* LOGGERINPUT_H_ */

@@ -26,7 +26,7 @@ void LogCore::log(LogMessage & message)
 {
 	for(std::map<std::string, std::shared_ptr<LogOutputBase> >::iterator it = _outputs.begin(); it != _outputs.end(); ++it)
 	{
-		it->second->enqueueLine(message);
+		it->second->enqueueMessage(message);
 	}
 }
 

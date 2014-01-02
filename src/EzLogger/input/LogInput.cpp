@@ -7,13 +7,13 @@
 
 #include "LogInput.h"
 
-logger_custom LogInput::custom;
-
+#define LOG(...)  std::cout << "--> " << __VA_ARGS__ << std::endl
 
 LogInput::LogInput()
 :_tagsToApply(),
  _tagGenerators(),
-  endl(*this)
+ _messageStreamPtr(new std::ostringstream()),
+ _inputStream(_messageStreamPtr, boost::function<void (LogInput*)>(&LogInput::sendMessage), *this)
 {
 	reInitMessage();
 }
@@ -21,10 +21,9 @@ LogInput::LogInput()
 void LogInput::reInitMessage()
 {
 	//re-construct the tag queue that will be passed on to the message
-	stagingTags = std::deque<std::shared_ptr<TagBase> >();
+	_stagingTags = LogMessage::TagMapType();
 
-	//clear stringstream
-	_messageText.str(std::string());
+	_messageStreamPtr->str("");
 }
 
 void LogInput::sendMessage()
@@ -32,20 +31,24 @@ void LogInput::sendMessage()
 	//Add in predefined tags.
 
 	//this is different because we're FOREACH-ing through a map
-	BOOST_FOREACH(tagMapElementType tagPair, _tagsToApply)
+//	for(auto tagPair : _tagsToApply)
+//	{
+//		_stagingTags.push_back(tagPair.second);
+//	}
+
+	BOOST_FOREACH(LogMessage::TagMapElementType tagPair, _tagsToApply)
 	{
-		stagingTags.push_back(tagPair.second);
+		_stagingTags[tagPair.first] = tagPair.second;
 	}
 
 	BOOST_FOREACH(generatorMapElementType generatorPair, _tagGenerators)
 	{
-		stagingTags.push_back((generatorPair.second()));
+		//execute the function pointer and add its result to stagingTags
+		_stagingTags[generatorPair.first] = generatorPair.second();
 	}
 
 	//construct message and send it
-	std::string messageText = _messageText.str();
-
-	LogMessage message = LogMessage(messageText, stagingTags);
+	LogMessage message = LogMessage(_messageStreamPtr->str(), std::move(_stagingTags));
 
 	LogCore::instance().log(message);
 
@@ -85,74 +88,40 @@ LogInput::~LogInput()
 
 }
 
-
-//// General template operator.
-//template<typename T>
-//LoggerInput & operator<<(LoggerInput & logger, T const & arg1)
+//LogInput & operator<<(LogInput & logger, TagBase * tag)
 //{
-//	std::cout << "LoggerInput.operator<<<T> called" << std::endl;
+//	logger.stagingTags.push_back(std::shared_ptr<TagBase>(tag));
+//	return logger;
+//}
+//
+//LogInput & operator<<(std::ostream & stream, const logger_endl & endl)
+//{
+//	endl._logger.sendMessage();
+//	return endl._logger;
+//}
+//
+//LogInput & operator<<(LogInput & stream, const logger_endl & endl)
+//{
+//	endl._logger.sendMessage();
+//	return endl._logger;
+//}
+//
+//std::ostream & operator<<(LogInput & logger, const char* arg1)
+//{
 //	return (logger._messageText << arg1);
 //}
 //
-//
-//// Specialization for logger_endl.
-//template<>
-//LoggerInput & operator<< <logger_endl>(LoggerInput & logger, logger_endl const & arg1)
+//std::ostream & operator<<(LogInput & logger, const std::string & arg1)
 //{
-//	std::cout << "LoggerInput.operator<<<endl> called" << std::endl;
-//	logger.sendMessage();
-//	return logger;
+//	return (logger._messageText << arg1);
 //}
 //
-//
-//// Specialization for TagBase.
-//template<>
-//LoggerInput & operator<<<TextTag>(LoggerInput & logger, const TextTag & arg1)
+//std::ostream & operator<<(LogInput & logger, const int & arg1)
 //{
-//	std::cout << "LoggerInput.operator<<<TextTag> called" << std::endl;
-//	logger.stagingTags.push(arg1);
-//	return logger;
+//	return (logger._messageText << arg1);
 //}
-
-LogInput & operator<<(LogInput & logger, TagBase * tag)
-{
-	logger.stagingTags.push_back(std::shared_ptr<TagBase>(tag));
-	return logger;
-}
-
-LogInput & operator<<(std::ostream & stream, const logger_endl & endl)
-{
-	endl._logger.sendMessage();
-	return endl._logger;
-}
-
-LogInput & operator<<(LogInput & stream, const logger_endl & endl)
-{
-	endl._logger.sendMessage();
-	return endl._logger;
-}
-
-std::ostream & operator<<(LogInput & logger, const char* arg1)
-{
-	return (logger._messageText << arg1);
-}
-
-std::ostream & operator<<(LogInput & logger, const std::string & arg1)
-{
-	return (logger._messageText << arg1);
-}
-
-std::ostream & operator<<(LogInput & logger, const int & arg1)
-{
-	return (logger._messageText << arg1);
-}
-
-std::ostream & operator<<(LogInput & logger, const double & arg1)
-{
-	return (logger._messageText << std::to_string(arg1));
-}
-
-std::ostream & operator<<(LogInput & logger, logger_custom & arg1)
-{
-	return logger._messageText;
-}
+//
+//std::ostream & operator<<(LogInput & logger, const double & arg1)
+//{
+//	return (logger._messageText << std::to_string(arg1));
+//}

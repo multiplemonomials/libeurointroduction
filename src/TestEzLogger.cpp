@@ -17,117 +17,139 @@
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include "test/functimer.hpp"
 
-void testBasicOut(LogInput * log)
+void testBasicOut(std::shared_ptr<LogInput> log)
 {
 	FUNC_TIMER;
 
-	std::cout << ">> " << "Testing basic output" << std::endl;
+	std::cout << "-- " << "Testing basic output" << std::endl;
+	log->stream() << (const char*)("Hello World!") << std::endl;
 
-	*log << (const char*)("Hello World!") << (*log).endl;
+	std::cout << "-- " << 7 << "Testing number output" << std::endl;
+	log->stream() << 7 << std::endl;
 
-	std::cout << ">> " << "Testing number output" << std::endl;
-
-	*log << 7 << (*log).endl;
-
-	std::cout << ">> " << "Testing std::string output" << std::endl;
-
+	std::cout << "-- " << "Testing std::string output" << std::endl;
 	std::string string("this is a std::string");
-	*log << string << (*log).endl;
+	log->stream() << string << std::endl;
 
-	std::cout << ">> " << "Testing double output" << std::endl;
+	std::cout << "-- " << "Testing double output" << std::endl;
+	log->stream() << std::to_string(9.543) << std::endl;
 
-	*log << 9.543 << (*log).endl;
 
-	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
-
-}
-
-void testCalltimeTags(LogInput * log)
-{
-	std::cout << ">> " << "Testing TextTag" << std::endl;
-
-	*log << new TextTag("foo") << "bar" << (*log).endl;
-
-	std::cout << ">> " << "Testing SeverityTag" << std::endl;
-
-	*log << new SeverityTag(SeverityTag::Severity::UNUSUAL) << (const char*)("This is weird...") << (*log).endl;
-
-	std::cout << ">> " << "Testing SeverityTag AND TextTag" << std::endl;
-
-	*log << new SeverityTag(SeverityTag::Severity::UNUSUAL) << new TextTag("foo") << (const char*)("unusual foo...") << (*log).endl;
-
+	// Wait for output.
 	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
 }
 
-void testPermanentTagTemplates(LogInput * log)
+void testCalltimeTags(std::shared_ptr<LogInput> log)
 {
-	std::cout << ">> " << "Testing Permanent TextTag" << std::endl;
+	std::cout << "-- " << "Testing TextTag" << std::endl;
+	log->addTag("Text", new TextTag("foo")).stream() << "bar" << std::endl;
 
+	std::cout << "-- " << "Testing SeverityTag" << std::endl;
+	log->addTag("Severity", new SeverityTag(SeverityTag::Severity::UNUSUAL)).stream() << (const char*)("This is weird...") << std::endl;
+
+	std::cout << "-- " << "Testing SeverityTag AND TextTag" << std::endl;
+	log->addTag("Severity", new SeverityTag(SeverityTag::Severity::UNUSUAL)).addTag("Text", new TextTag("foo")).stream() << (const char*)("unusual foo...") << std::endl;
+
+
+	// Wait for output.
+	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
+}
+
+void testPermanentTagTemplates(std::shared_ptr<LogInput> log)
+{
+	std::cout << "-- " << "Testing Permanent TextTag" << std::endl;
 	log->addTagTemplate(std::string("foo"), new TextTag("foo"));
+	log->stream() << "bar" << std::endl;
+	log->stream() << "d" << std::endl;
 
-	*log << "bar" << (*log).endl;
 
-	*log << "d" << (*log).endl;
-
+	// Wait for output.
 	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
 
-	std::cout << ">>" << "Removing tag" << std::endl;
 
+	std::cout << "--" << "Removing tag" << std::endl;
 	log->removeTagTemplate("foo");
+	log->stream() << "It should be gone now" << std::endl;
 
-	*log << "It should be gone now" << (*log).endl;
 
+	// Wait for output.
 	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
 }
 
-void testPermanentTagGenerators(LogInput * log)
+void testPermanentTagGenerators(std::shared_ptr<LogInput> log)
 {
-	std::cout << ">> " << "Testing Permanent TimeTag" << std::endl;
-	log->addTagGenerator("time_generator", boost::function<std::shared_ptr<TagBase> ()>(&TimeTag::factory));
+	// Report the time on each log entry.
+	std::cout << "-- " << "Testing Permanent TimeTag" << std::endl;
+	log->addTagGenerator("time_generator", boost::function<std::shared_ptr<TagBase>()>(&TimeTag::factory));
+	log->stream() << "now" << std::endl;
 
-	*log << "now" << (*log).endl;
+	// Wait for time to pass.
 	boost::this_thread::sleep(boost::posix_time::seconds(1));
-	*log << "1 second from now" << (*log).endl;
+	log->stream() << "1 second from now" << std::endl;
 
+
+	// Wait for output.
 	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
 
+
+	// Report the date on each log entry.
 	log->addTagGenerator("date_generator", boost::function<std::shared_ptr<TagBase> ()>(&DateTag::dt_factory));
-	std::cout << ">>" << "Adding tag generator for DateTag" << std::endl;
-	*log << "is the current date" << (*log).endl;
+	std::cout << "--" << "Adding tag generator for DateTag" << std::endl;
+	log->stream() << "is the current date" << std::endl;
 
+
+	// Wait for output.
 	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
 
-	std::cout << ">>" << "Removing tag generators" << std::endl;
 
+	// We can remove the generators.
+	std::cout << "--" << "Removing tag generators" << std::endl;
 	log->removeTagGenerator("time_generator");
 	log->removeTagGenerator("date_generator");
 
-	*log << "It should be gone now" << (*log).endl;
+	log->stream() << "It should be gone now" << std::endl;
 
+
+	// Wait for output.
 	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
 }
 
 int main()
 {
-	LogInput * log = new LogInput();
+	// Build object for sourcing stuff into the log.
+  	auto log = std::make_shared<LogInput>();
 
+
+	// Add a log sink (emits stuff to std::cout).
 	std::shared_ptr<LogOutputBase> output(new LogOutputBase());
-
 	LogCore::instance().addOutput("stdio", output);
 
+
+	// Run logging tests.
 	testBasicOut(log);
 	testCalltimeTags(log);
 	testPermanentTagTemplates(log);
 	testPermanentTagGenerators(log);
 
-	delete log;
 
+	// Verify removeOutput.
 	LogCore::instance().removeOutput("stdio");
 
-	//destroy output
-	output.reset();
+//#define LOG_DEBUG(...) LogContainer::instance().logDebug.addTag(new TextTag(__FILENAME__)).addTag(new TextTag(__LINE__)).stream() << __VA_ARGS__
+
+
+	// Try M2MSLAP logging macros.
+	//LOG_DEBUG("This is a debug message.");
 
 	return 0;
+}
+
+
+void foo()
+{
+
+
+}
 }
 
 
