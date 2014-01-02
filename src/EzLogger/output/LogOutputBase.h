@@ -39,6 +39,7 @@ protected:
 	 * acceptMessage returns a boolean that decides whether the output will log this message.
 	 * writeMessage converts the message and tags into a string to output and then puts it where it's supposed to go
 	 * in the default implementation, writeString actually writes a string to the output
+	 * (writeString also takes care of any line-ending stuff; the string it is called with should have NO newline/carriage return at the end
 	 */
 	virtual bool acceptMessage(std::shared_ptr<LogMessage> messagePtr);
 

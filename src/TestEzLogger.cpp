@@ -7,6 +7,7 @@
 
 #include "LogMacros.h"
 #include <output/JamiesPrettyLogOutput.h>
+#include <output/FileLogOutput.h>
 #include <memory>
 #include <unistd.h>
 #include <boost/thread/thread.hpp>
@@ -100,6 +101,68 @@ void testTimeDateTags()
 	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
 }
 
+void testFileLogOutput()
+{
+
+	LOG_UNITTEST("Opening FileLogOutput on file test.log");
+	std::shared_ptr<FileLogOutput> output(new FileLogOutput("test.log"));
+	LogCore::instance().addOutput("build.log", output);
+
+	LOG_BASIC("This should be logged to the file.")
+	// Wait for time to pass.
+	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
+
+	LOG_UNITTEST("Removing FileLogOutput");
+	LogCore::instance().removeOutput("build.log");
+
+	LOG_BASIC("This should be NOT logged to the file.")
+	// Wait for output.
+	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
+}
+
+class FilteringLogOutput : public JamiesPrettyLogOutput
+{
+	virtual bool acceptMessage(std::shared_ptr<LogMessage> messagePtr)
+	{
+		//map.count() returns 0 if the key is not found
+		return !(messagePtr->getTags().count("block_this"));
+	}
+};
+
+void testFilteringOutput()
+{
+
+	LOG_UNITTEST("Swapping in new output");
+	LogCore::instance().removeOutput("stdio");
+	std::shared_ptr<FilteringLogOutput> filtering_output(new FilteringLogOutput());
+	LogCore::instance().addOutput("stdio", filtering_output);
+
+	LOG_BASIC("You should see this")
+	// Wait for time to pass.
+	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
+
+	{
+		std::shared_ptr<LogMessage> logMessage(new LogMessage({{"DontBlock", "YouShouldSeeThis"}})); //function from Tags.h
+		logMessage->stream() << "And this, but not the next one";
+		LogCore::instance().log(logMessage);
+	}
+
+	{
+		std::shared_ptr<LogMessage> logMessage(new LogMessage({{"block_this", "YouShouldn'tSeeThis"}})); //function from Tags.h
+		LogCore::instance().log(logMessage);
+	}
+
+	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
+
+	LOG_UNITTEST("Swapping back in new JamiesPrettyLoggingOutput");
+	LogCore::instance().removeOutput("stdio");
+	std::shared_ptr<JamiesPrettyLogOutput> output(new JamiesPrettyLogOutput());
+	LogCore::instance().addOutput("stdio", output);
+
+	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
+
+}
+
 int main()
 {
 
@@ -112,7 +175,12 @@ int main()
 	testBasicOut();
 	testCalltimeTags();
 	testTimeDateTags();
+	testFileLogOutput();
+	testFilteringOutput();
 
+	LOG_UNITTEST("Done");
+
+	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
 
 	// Verify removeOutput.
 	LogCore::instance().removeOutput("stdio");

@@ -32,8 +32,6 @@ LogOutputBase::~LogOutputBase()
 //run by the object's thread
 void LogOutputBase::run()
 {
-	std::cout << "starting output thread" << std::endl;
-
 	while(!_shouldStop)
 	{
 		//blocks until there is a message
@@ -48,8 +46,6 @@ void LogOutputBase::run()
 			}
 		}
 	}
-
-	std::cout << "stopping output thread" << std::endl;
 }
 
 bool LogOutputBase::acceptMessage(std::shared_ptr<LogMessage> messagePtr)
