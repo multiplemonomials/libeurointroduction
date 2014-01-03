@@ -8,6 +8,8 @@
 #ifndef LOGHOLDER_H_
 #define LOGHOLDER_H_
 
+#include <boost/thread/thread.hpp>
+
 #include <LogMessage.h>
 #include <LogCore.h>
 #include <memory>
@@ -16,6 +18,13 @@
 #define LOG_DEBUG(args)																				\
 {																									\
 	std::shared_ptr<LogMessage> logMessage(new LogMessage({{"time", currentTime()}, {"severity", "Debug"}, {"filename", __FILE__}, {"line_number", std::to_string(__LINE__)}}));	\
+	logMessage->stream() << args;\
+	LogCore::instance().log(logMessage); \
+}
+
+#define LOG_INFO(args)																				\
+{																									\
+	std::shared_ptr<LogMessage> logMessage(new LogMessage({{"time", currentTime()}, {"severity", "Info"}, {"filename", __FILE__}, {"line_number", std::to_string(__LINE__)}}));	\
 	logMessage->stream() << args;\
 	LogCore::instance().log(logMessage); \
 }

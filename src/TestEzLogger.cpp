@@ -195,6 +195,7 @@ int main()
 	LogCore::instance().addOutput("randall.log", randalls_file_output);
 
 	LOG_DEBUG("This is a debug message.");
+	LOG_INFO("This is an info message.");
 
 	LogCore::instance().removeOutput("stdio");
 
