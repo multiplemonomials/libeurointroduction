@@ -15,7 +15,7 @@
 
 #define LOG_DEBUG(args)																				\
 {																									\
-	std::shared_ptr<LogMessage> logMessage(new LogMessage({{"Filename", __FILE__}, {"Line", std::to_string(__LINE__)}, {"Time", currentTime()}, {"Severity", "Debug"}}));	\
+	std::shared_ptr<LogMessage> logMessage(new LogMessage({{"time", currentTime()}, {"severity", "Debug"}, {"filename", __FILE__}, {"line_number", std::to_string(__LINE__)}}));	\
 	logMessage->stream() << args;\
 	LogCore::instance().log(logMessage); \
 }

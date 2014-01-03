@@ -13,6 +13,8 @@
 #include <boost/thread/thread.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include "test/functimer.hpp"
+#include <output/RandallsCustomLogOutput.h>
+#include <output/RandallsCustomFileLogOutput.h>
 
 #define LOG_BASIC(args)																				\
 {																									\
@@ -186,7 +188,17 @@ int main()
 	LogCore::instance().removeOutput("stdio");
 
 	// Try M2MSLAP logging macros.
-	//LOG_DEBUG("This is a debug message.");
+	std::shared_ptr<RandallsCustomLogOutput> randalls_output(new RandallsCustomLogOutput());
+	LogCore::instance().addOutput("stdio", randalls_output);
+
+	std::shared_ptr<RandallsCustomFileLogOutput> randalls_file_output(new RandallsCustomFileLogOutput("randall.log"));
+	LogCore::instance().addOutput("randall.log", randalls_file_output);
+
+	LOG_DEBUG("This is a debug message.");
+
+	LogCore::instance().removeOutput("stdio");
+
+	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
 
 	return 0;
 }

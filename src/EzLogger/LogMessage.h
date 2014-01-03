@@ -63,7 +63,7 @@ public:
 		return _stream;
 	}
 
-	const TagMapType& getTags() const
+	TagMapType& getTags()
 	{
 		return _tags;
 	}
