@@ -12,7 +12,7 @@
 #include <unistd.h>
 #include <boost/thread/thread.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
-#include "test/functimer.hpp"
+#include "FunctionTimer/functimer.hpp"
 #include <output/RandallsCustomLogOutput.h>
 #include <output/RandallsCustomFileLogOutput.h>
 

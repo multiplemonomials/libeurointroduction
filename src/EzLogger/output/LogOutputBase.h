@@ -11,7 +11,7 @@
 #define BOOST_THREAD_DYN_LINK
 
 #include <LogMessage.h>
-#include "ThreadSafeQueue.h"
+#include <ThreadSafeQueue/ThreadSafeQueue.h>
 #include <boost/thread/thread.hpp>
 #include <boost/foreach.hpp>
 #include <memory>
