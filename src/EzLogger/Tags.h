@@ -11,22 +11,8 @@
 #include <ctime>
 #include <string>
 
-std::string currentTime()
-{
-	std::time_t time = std::time(0);
-	char cstr[128];
-	std::strftime(cstr, sizeof(cstr), "%I:%M:%S", std::localtime(&time));
+std::string currentTime();
 
-	return cstr;
-}
-
-std::string currentDate()
-{
-	std::time_t time = std::time(0);
-	char cstr[128];
-	std::strftime(cstr, sizeof(cstr), "%D", std::localtime(&time));
-
-	return cstr;
-}
+std::string currentDate();
 
 #endif /* TAGS_H_ */
