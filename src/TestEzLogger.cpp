@@ -6,15 +6,18 @@
  */
 
 #include "LogMacros.h"
-#include <output/JamiesPrettyLogOutput.h>
-#include <output/FileLogOutput.h>
+#include <output/LogOutput.h>
+#include <output/acceptors/BasicAcceptor.h>
+#include <output/formatters/JamiesPrettyFormatter.h>
+#include <output/formatters/RandallsCustomFormatter.h>
+#include <output/writers/BasicWriter.h>
+#include <output/writers/FileWriter.h>
+
 #include <memory>
 #include <unistd.h>
 #include <boost/thread/thread.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include "FunctionTimer/functimer.hpp"
-#include <output/RandallsCustomLogOutput.h>
-#include <output/RandallsCustomFileLogOutput.h>
 
 #define LOG_BASIC(args)																				\
 {																									\
@@ -107,24 +110,29 @@ void testFileLogOutput()
 {
 
 	LOG_UNITTEST("Opening FileLogOutput on file test.log");
-	std::shared_ptr<FileLogOutput> output(new FileLogOutput("test.log"));
-	LogCore::instance().addOutput("build.log", output);
+	auto output = std::make_shared<LogOutput<BasicAcceptor, JamiesPrettyFormatter, FileWriter>>
+	(
+		std::make_shared<BasicAcceptor>(),
+		std::make_shared<JamiesPrettyFormatter>(),
+		std::make_shared<FileWriter>("test.log")
+	);
+	LogCore::instance().addOutput("test.log", output);
 
 	LOG_BASIC("This should be logged to the file.")
 	// Wait for time to pass.
 	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
 
 	LOG_UNITTEST("Removing FileLogOutput");
-	LogCore::instance().removeOutput("build.log");
+	LogCore::instance().removeOutput("test.log");
 
 	LOG_BASIC("This should be NOT logged to the file.")
 	// Wait for output.
 	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
 }
 
-class FilteringLogOutput : public JamiesPrettyLogOutput
+struct FilteringAcceptor
 {
-	virtual bool acceptMessage(std::shared_ptr<LogMessage> messagePtr)
+	bool operator()(std::shared_ptr<LogMessage> & messagePtr)
 	{
 		//map.count() returns 0 if the key is not found
 		return !(messagePtr->getTags().count("block_this"));
@@ -136,7 +144,12 @@ void testFilteringOutput()
 
 	LOG_UNITTEST("Swapping in new output");
 	LogCore::instance().removeOutput("stdio");
-	std::shared_ptr<FilteringLogOutput> filtering_output(new FilteringLogOutput());
+	auto filtering_output = std::make_shared<LogOutput<FilteringAcceptor, JamiesPrettyFormatter, BasicWriter>>
+	(
+		std::make_shared<FilteringAcceptor>(),
+		std::make_shared<JamiesPrettyFormatter>(),
+		std::make_shared<BasicWriter>()
+	);
 	LogCore::instance().addOutput("stdio", filtering_output);
 
 	LOG_BASIC("You should see this")
@@ -158,8 +171,13 @@ void testFilteringOutput()
 
 	LOG_UNITTEST("Swapping back in new JamiesPrettyLoggingOutput");
 	LogCore::instance().removeOutput("stdio");
-	std::shared_ptr<JamiesPrettyLogOutput> output(new JamiesPrettyLogOutput());
-	LogCore::instance().addOutput("stdio", output);
+	auto outputPtr = std::make_shared<LogOutput<BasicAcceptor, JamiesPrettyFormatter, BasicWriter>>
+	(
+		std::make_shared<BasicAcceptor>(),
+		std::make_shared<JamiesPrettyFormatter>(),
+		std::make_shared<BasicWriter>()
+	);
+	LogCore::instance().addOutput("stdio", outputPtr);
 
 	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
 
@@ -169,8 +187,13 @@ int main()
 {
 
 	// Add a log sink (emits stuff to std::cout).
-	std::shared_ptr<JamiesPrettyLogOutput> output(new JamiesPrettyLogOutput());
-	LogCore::instance().addOutput("stdio", output);
+	auto outputPtr = std::make_shared<LogOutput<BasicAcceptor, JamiesPrettyFormatter, BasicWriter>>
+	(
+		std::make_shared<BasicAcceptor>(),
+		std::make_shared<JamiesPrettyFormatter>(),
+		std::make_shared<BasicWriter>()
+	);
+	LogCore::instance().addOutput("stdio", outputPtr);
 
 
 	// Run logging tests.
@@ -188,10 +211,21 @@ int main()
 	LogCore::instance().removeOutput("stdio");
 
 	// Try M2MSLAP logging macros.
-	std::shared_ptr<RandallsCustomLogOutput> randalls_output(new RandallsCustomLogOutput());
+	auto randalls_output = std::make_shared<LogOutput<BasicAcceptor, RandallsCustomFormatter, BasicWriter>>
+	(
+		std::make_shared<BasicAcceptor>(),
+		std::make_shared<RandallsCustomFormatter>(),
+		std::make_shared<BasicWriter>()
+	);
+
 	LogCore::instance().addOutput("stdio", randalls_output);
 
-	std::shared_ptr<RandallsCustomFileLogOutput> randalls_file_output(new RandallsCustomFileLogOutput("randall.log"));
+	auto randalls_file_output = std::make_shared<LogOutput<BasicAcceptor, RandallsCustomFormatter, FileWriter>>
+	(
+		std::make_shared<BasicAcceptor>(),
+		std::make_shared<RandallsCustomFormatter>(),
+		std::make_shared<FileWriter>("randall.log")
+	);
 	LogCore::instance().addOutput("randall.log", randalls_file_output);
 
 	LOG_DEBUG("This is a debug message.");

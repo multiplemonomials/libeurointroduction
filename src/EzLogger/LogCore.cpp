@@ -25,13 +25,13 @@ LogCore& LogCore::instance()
 void LogCore::log(std::shared_ptr<LogMessage> message)
 {
 
-	for(std::map<std::string, std::shared_ptr<LogOutputBase> >::iterator it = _outputs.begin(); it != _outputs.end(); ++it)
+	for(outputMapType::iterator it = _outputs.begin(); it != _outputs.end(); ++it)
 	{
 		it->second->enqueueMessage(message);
 	}
 }
 
-void LogCore::addOutput(std::string name, std::shared_ptr<LogOutputBase> output)
+void LogCore::addOutput(std::string name, std::shared_ptr<LogOutputBaseClass> output)
 {
 	_outputs[name] = output;
 }

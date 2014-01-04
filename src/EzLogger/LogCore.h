@@ -15,7 +15,7 @@
 #include "boost/thread/lock_types.hpp"
 #include <map>
 #include <utility>
-#include <output/LogOutputBase.h>
+#include <output/LogOutput.h>
 #include "LogMessage.h"
 
 class LogCore
@@ -29,7 +29,7 @@ private:
 
 	boost::mutex _loggingCoreMutex;
 
-	typedef std::map<std::string, std::shared_ptr<LogOutputBase> > outputMapType;
+	typedef std::map<std::string, std::shared_ptr<LogOutputBaseClass> > outputMapType;
 
 	outputMapType _outputs;
 
@@ -42,7 +42,7 @@ public:
 	void log(std::shared_ptr<LogMessage> message);
 
 	//adds the LoggingOutput to the list of outputs to, ummm, output to
-	void addOutput(std::string name, std::shared_ptr<LogOutputBase> output);
+	void addOutput(std::string name, std::shared_ptr<LogOutputBaseClass> output);
 
 	void removeOutput(std::string name);
 
