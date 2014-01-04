@@ -8,6 +8,7 @@
 #include "LogMacros.h"
 #include <output/LogOutput.h>
 #include <output/acceptors/BasicAcceptor.h>
+#include <output/formatters/BasicFormatter.h>
 #include <output/formatters/JamiesPrettyFormatter.h>
 #include <output/formatters/RandallsCustomFormatter.h>
 #include <output/writers/BasicWriter.h>
@@ -169,12 +170,12 @@ void testFilteringOutput()
 
 	boost::this_thread::sleep(boost::posix_time::milliseconds(100));
 
-	LOG_UNITTEST("Swapping back in new JamiesPrettyLoggingOutput");
+	LOG_UNITTEST("Swapping back in new basic LogOutput");
 	LogCore::instance().removeOutput("stdio");
-	auto outputPtr = std::make_shared<LogOutput<BasicAcceptor, JamiesPrettyFormatter, BasicWriter>>
+	auto outputPtr = std::make_shared<LogOutput<BasicAcceptor, BasicFormatter, BasicWriter>>
 	(
 		std::make_shared<BasicAcceptor>(),
-		std::make_shared<JamiesPrettyFormatter>(),
+		std::make_shared<BasicFormatter>(),
 		std::make_shared<BasicWriter>()
 	);
 	LogCore::instance().addOutput("stdio", outputPtr);

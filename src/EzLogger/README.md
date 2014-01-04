@@ -9,23 +9,31 @@ Manual -- Section 1 -- Most basic logging
 
 In order to get your first log message through the library, you'll have to set up one thing, the output, first.
 
-This library has a couple of logging outputs to choose from, but for now
- you can go with the most basic one, LogOutputBase.
+This library features a three-component output system.  Every output has an acceptor that
+filters messages, a formatter that converts messages to strings, and a writer that outputs them to their final destination.
 
 ```cpp
-#include <EzLogger/LogOutputBase.h>
+#include <output/LogOutput.h>
+#include <output/acceptors/BasicAcceptor.h>
+#include <output/formatters/BasicFormatter.h>
+#include <output/writers/BasicWriter.h>
 ```
 
 First, create it:
 
 ```cpp
-std::shared_ptr<LogOutputBase> output(new LogOutputBase());
+auto outputPtr = std::make_shared<LogOutput<BasicAcceptor, BasicFormatter, BasicWriter>>
+(
+  std::make_shared<BasicAcceptor>(),
+  std::make_shared<BasicFormatter>(),
+  std::make_shared<BasicWriter>()
+);
 ```
 
 Then, add it to the registry of active outputs (you'll need to include EzLogger/LogCore.h):
 
 ```cpp
-LogCore::instance().addOutput("stdio", output);
+LogCore::instance().addOutput("stdio", outputPtr);
 ```
 
 You can have multiple outputs, and they are identified with a unique string, in this case, "stdio".
@@ -44,7 +52,7 @@ That is really quite a bit of code, however.  You can automate it with a macro:
 
 ```cpp
 #define LOG_BASIC(args)
-{ \* note angle brackets that keep multiple LOG_BASIC's from interfering with each other */
+{ \/* note angle brackets that keep multiple LOG_BASIC's from interfering with each other */
 std::shared_ptr<LogMessage> logMessage(new LogMessage());\
 logMessage->stream() << args;\
 LogCore::instance().log(logMessage);\
@@ -78,12 +86,16 @@ std::shared_ptr<LogMessage> logMessage(new LogMessage({{"Severity", "Debug"}}));
 This message now has one tag with key "Severity" and value "Debug"
 All tag formatting is in the control of each output.  This means it's possible to have different outputs 
 print different things based on the tag, but we'll get into that later.
-Since LogOutputBase formats every tag as "[<key>: <value>] ", this will print out "[Severity: Debug] "
+Since BasicFormatter formats every tag as 
+```
+[<key>: <value>]
+```
+this will print out "[Severity: Debug] "
 before the message.  
 
 Don't want to have that "Severity: " printout in front of "Debug"?
-I don't either, so I included JamiesPrettyLogOutput (in EzLogger/output/JamiesPrettyLogOutput.h).
-Use that instead of LogOutputBase, and it will print "[Debug]" instead.
+I don't either, so I included JamiesPrettyLogOutput (in EzLogger/output/formatters/JamiesPrettyFormatter.h).
+Use that instead of BasicFormatter in the LogOutput construction, and it will print "[Debug]" instead.
 
 Let's consider another use case, where you want to add the time before a message.
 There is a helper function in EzLogger/Tags.h that returns a string of
