@@ -145,12 +145,7 @@ void testFilteringOutput()
 
 	LOG_UNITTEST("Swapping in new output");
 	LogCore::instance().removeOutput("stdio");
-	auto filtering_output = std::make_shared<LogOutput<FilteringAcceptor, JamiesPrettyFormatter, BasicWriter>>
-	(
-		std::make_shared<FilteringAcceptor>(),
-		std::make_shared<JamiesPrettyFormatter>(),
-		std::make_shared<BasicWriter>()
-	);
+	auto filtering_output = std::make_shared<LogOutput<FilteringAcceptor, JamiesPrettyFormatter, BasicWriter>>();
 	LogCore::instance().addOutput("stdio", filtering_output);
 
 	LOG_BASIC("You should see this")

@@ -8,8 +8,6 @@
 #ifndef LOGHOLDER_H_
 #define LOGHOLDER_H_
 
-#include <boost/thread/thread.hpp>
-
 #include <LogMessage.h>
 #include <LogCore.h>
 #include <memory>

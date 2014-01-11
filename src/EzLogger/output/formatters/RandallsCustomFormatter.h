@@ -1,3 +1,8 @@
+/**
+ * Formats messages like this:
+ * [Debug] 06:54:17 TestEzLogger.cpp:232 ----------------------------
+ * This is a debug message.
+ */
 
 #ifndef RANDALLSCUSTOMFORMATTER_H_
 #define RANDALLSCUSTOMFORMATTER_H_

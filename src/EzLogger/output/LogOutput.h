@@ -72,6 +72,20 @@ public:
 
 	}
 
+	//convinience constructor that default constructs all of the types
+	//use this if all of the template arguments have no-argument constructors
+	LogOutput()
+	:_inputQueue(),
+	 _shouldStop(false),
+	 _acceptorPtr(std::make_shared<Acceptor_T>()),
+	 _formatterPtr(std::make_shared<Formatter_T>()),
+	 _writerPtr(std::make_shared<Writer_T>()),
+	 _objectThread(&LogOutput::run, this) //initialize thread IN THE CONSTRUCTOR!!!
+		//MUAHAHAHAHAHAHAHAH
+	{
+
+	}
+
 	void enqueueMessage(std::shared_ptr<LogMessage> messagePtr)
 	{
 		_inputQueue.Enqueue(messagePtr, false);
