@@ -14,6 +14,7 @@
 #include <output/writers/BasicWriter.h>
 #include <output/writers/FileWriter.h>
 
+#include <iostream>
 #include <memory>
 #include <unistd.h>
 #include <boost/thread/thread.hpp>
