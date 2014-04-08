@@ -9,7 +9,7 @@
 #include <output/LogOutput.h>
 #include <output/acceptors/BasicAcceptor.h>
 #include <output/formatters/BasicFormatter.h>
-#include <output/formatters/JamiesPrettyFormatter.h>
+#include <output/formatters/CondensedFormatter.h>
 #include <output/formatters/RandallsCustomFormatter.h>
 #include <output/writers/BasicWriter.h>
 #include <output/writers/FileWriter.h>
@@ -112,10 +112,10 @@ void testFileLogOutput()
 {
 
 	LOG_UNITTEST("Opening FileLogOutput on file test.log");
-	auto output = std::make_shared<LogOutput<BasicAcceptor, JamiesPrettyFormatter, FileWriter>>
+	auto output = std::make_shared<LogOutput<BasicAcceptor, CondensedFormatter, FileWriter>>
 	(
 		std::make_shared<BasicAcceptor>(),
-		std::make_shared<JamiesPrettyFormatter>(),
+		std::make_shared<CondensedFormatter>(),
 		std::make_shared<FileWriter>("test.log")
 	);
 	LogCore::instance().addOutput("test.log", output);
@@ -146,7 +146,7 @@ void testFilteringOutput()
 
 	LOG_UNITTEST("Swapping in new output");
 	LogCore::instance().removeOutput("stdio");
-	auto filtering_output = std::make_shared<LogOutput<FilteringAcceptor, JamiesPrettyFormatter, BasicWriter>>();
+	auto filtering_output = std::make_shared<LogOutput<FilteringAcceptor, CondensedFormatter, BasicWriter>>();
 	LogCore::instance().addOutput("stdio", filtering_output);
 
 	LOG_BASIC("You should see this")
@@ -184,10 +184,10 @@ int main()
 {
 
 	// Add a log sink (emits stuff to std::cout).
-	auto outputPtr = std::make_shared<LogOutput<BasicAcceptor, JamiesPrettyFormatter, BasicWriter>>
+	auto outputPtr = std::make_shared<LogOutput<BasicAcceptor, CondensedFormatter, BasicWriter>>
 	(
 		std::make_shared<BasicAcceptor>(),
-		std::make_shared<JamiesPrettyFormatter>(),
+		std::make_shared<CondensedFormatter>(),
 		std::make_shared<BasicWriter>()
 	);
 	LogCore::instance().addOutput("stdio", outputPtr);

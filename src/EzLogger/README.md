@@ -94,7 +94,7 @@ this will print out "[Severity: Debug] "
 before the message.  
 
 Don't want to have that "Severity: " printout in front of "Debug"?
-I don't either, so I included JamiesPrettyLogOutput (in EzLogger/output/formatters/JamiesPrettyFormatter.h).
+I don't either, so I included CondensedFormatter (in EzLogger/output/formatters/CondensedFormatter.h).
 Use that instead of BasicFormatter in the LogOutput construction, and it will print "[Debug]" instead.
 
 Let's consider another use case, where you want to add the time before a message.
@@ -116,7 +116,7 @@ The initializer list
 ```
 is an
 ```cpp
-initialzer_list<std::pair<std::string, int>>
+initializer_list<std::pair<std::string, int>>
 ```
 
 NOT an 
