@@ -15,7 +15,7 @@
 #include "boost/thread/lock_types.hpp"
 #include <map>
 #include <utility>
-#include <output/LogOutput.h>
+#include "output/LogOutput.h"
 #include "LogMessage.h"
 
 class LogCore

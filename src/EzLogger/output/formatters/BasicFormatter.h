@@ -12,7 +12,7 @@
 #include <sstream>
 #include <boost/foreach.hpp>
 
-#include <LogMessage.h>
+#include "../../LogMessage.h"
 
 struct BasicFormatter
 {

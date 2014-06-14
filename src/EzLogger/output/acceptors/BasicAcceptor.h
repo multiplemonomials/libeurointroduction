@@ -7,7 +7,7 @@
 #ifndef BASICACCEPTOR_H_
 #define BASICACCEPTOR_H_
 
-#include <LogMessage.h>
+#include "../../LogMessage.h"
 
 struct BasicAcceptor
 {

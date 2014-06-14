@@ -10,8 +10,8 @@
 #include <memory>
 #include <boost/thread/thread.hpp>
 
-#include <LogMessage.h>
-#include <ThreadSafeQueue/ThreadSafeQueue.h>
+#include "../LogMessage.h"
+#include "../../ThreadSafeQueue/ThreadSafeQueue.h"
 
 // base class so functions can accept an unknown template
 class LogOutputBaseClass

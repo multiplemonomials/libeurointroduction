@@ -10,7 +10,6 @@
 
 InterruptibleWaiter::InterruptibleWaiter()
 :_wasInterrupted(false),
- _isCurrentlyBlocking(false),
  _conditionVariable()
 {
 
@@ -23,82 +22,54 @@ InterruptibleWaiter::~InterruptibleWaiter()
 
 void InterruptibleWaiter::block()
 {
-	if(!_isCurrentlyBlocking)
+	std::unique_lock<std::mutex> lock(_mutex);
+
+	_conditionVariable.wait(lock);
+
+	if(_wasInterrupted == true)
 	{
-		std::unique_lock<std::mutex> lock(_mutex);
-
-		_isCurrentlyBlocking = true;
-
-		_conditionVariable.wait(lock);
-
-		_isCurrentlyBlocking = false;
-
-		if(_wasInterrupted == true)
-		{
-			_wasInterrupted = false;
-			throw ThreadInterruptedException();
-		}
-	}
-	else
-	{
-		//error
+		_wasInterrupted = false;
+		throw ThreadInterruptedException();
 	}
 
 	return;
 }
 
-void InterruptibleWaiter::wait(unsigned long milliseconds)
+void InterruptibleWaiter::block(std::unique_lock<std::mutex> & callersLock)
 {
-	if(!_isCurrentlyBlocking)
-	{
-		std::unique_lock<std::mutex> lock(_mutex);
+	callersLock.unlock();
 
-		_isCurrentlyBlocking = true;
+	block();
 
-		_conditionVariable.wait_for(lock, std::chrono::milliseconds(milliseconds));
-
-		_isCurrentlyBlocking = false;
-
-		if(_wasInterrupted == true)
-		{
-			_wasInterrupted = false;
-			throw ThreadInterruptedException();
-		}
-	}
-	else
-	{
-		//error
-	}
+	callersLock.lock();
 
 	return;
 }
 
-bool InterruptibleWaiter::interrupt()
+bool InterruptibleWaiter::wait(unsigned long milliseconds)
 {
-	if(_isCurrentlyBlocking)
+	std::unique_lock<std::mutex> lock(_mutex);
+
+	std::cv_status waitResult = _conditionVariable.wait_for(lock, std::chrono::milliseconds(milliseconds));
+
+	if(_wasInterrupted == true)
 	{
-		_wasInterrupted = true;
-		_conditionVariable.notify_all();
-		return true;
-	}
-	else
-	{
-		return false;
+		_wasInterrupted = false;
+		throw ThreadInterruptedException();
 	}
 
+	return waitResult == std::cv_status::timeout;
 }
 
-bool InterruptibleWaiter::awaken()
+void InterruptibleWaiter::interrupt()
 {
-	if(_isCurrentlyBlocking)
-	{
-		_conditionVariable.notify_all();
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	_wasInterrupted = true;
+	_conditionVariable.notify_one();
+}
+
+void InterruptibleWaiter::awaken()
+{
+	_conditionVariable.notify_one();
 
 }
 

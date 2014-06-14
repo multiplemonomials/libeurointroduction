@@ -1,9 +1,9 @@
 /*
- * ThreadSafeQueue.h
- *
- *  Created on: Sep 30, 2013
- *      Author: jamie
- */
+* ThreadSafeQueue.h
+*
+* Created on: Sep 30, 2013
+* Author: jamie
+*/
 
 #ifndef THREADSAFEQUEUE_H_
 #define THREADSAFEQUEUE_H_
@@ -18,13 +18,13 @@ Queue template that can be safely shared by multiple threads.
 #define BOOST_THREAD_DYN_LINK
 
 #include <queue>
-#include "boost/thread/mutex.hpp"
-#include "boost/thread/condition_variable.hpp"
-#include "boost/thread/lock_types.hpp"
+#include <mutex>
+#include <condition_variable>
+#include <InterruptibleWait/InterruptibleWaiter.h>
 
 
 /*-----------------------------------------------------------------------------
-* Queue template that can be safely shared by multiple threads.  Uses
+* Queue template that can be safely shared by multiple threads. Uses
 * really convenient Boost primitives for synchronization.
 ----------------------------------------------------------------------------*/
 
@@ -32,16 +32,13 @@ template<typename T>
 class ThreadSafeQueue
 {
     // Unprotected queue.
-    std::deque<T>               _deque;
+    std::deque<T> _deque;
 
 
     // Mutex object we will synchronize on.
-    boost::mutex                _mutex;
+    std::mutex _mutex;
 
-
-    // Synchronizer object that readers of an empty queue will wait on.
-    boost::condition_variable   _nonEmpty;
-
+    InterruptibleWaiter _waiter;
 
 public:
 
@@ -53,7 +50,7 @@ public:
     size_type size()
     {
         // Acquire the lock (automagically release when leaving scope).
-        boost::unique_lock<boost::mutex> lock(_mutex);
+        std::unique_lock<std::mutex> lock(_mutex);
 
         return _deque.size();
     }
@@ -64,12 +61,12 @@ public:
     // at front (i.e., next to be dequeued).
     void Enqueue
     (
-        T const &       data,
-        bool const &    enqueueAtFront = false
+        T const & data,
+        bool const & enqueueAtFront = false
     )
     {
         // Acquire the lock (automagically release when leaving scope).
-        boost::unique_lock<boost::mutex> lock(_mutex);
+        std::unique_lock<std::mutex> lock(_mutex);
 
 
         // Enqueue the data at the appropriate end of the queue.
@@ -84,7 +81,7 @@ public:
 
 
         // Notify another waiting thread that data is ready.
-        _nonEmpty.notify_one();
+        _waiter.awaken();
     }
 
 
@@ -93,23 +90,29 @@ public:
     T Dequeue()
     {
         // Acquire the lock (automagically release when leaving scope).
-        boost::unique_lock<boost::mutex> lock(_mutex);
+        std::unique_lock<std::mutex> lock(_mutex);
 
 
         // If queue is empty, wait.
         while(_deque.size() == 0)
         {
-            // Note:  !lock! is automatically released while we wait,
-            // then re-acquired after the wait.  Sweet!
-            _nonEmpty.wait(lock);
+            // Note: !lock! is automatically released while we wait,
+            // then re-acquired after the wait. Sweet!
+            _waiter.block(lock);
         }
 
 
         // When we get to here: (a) at least one item is in the queue,
-        // and (b) we have the lock.  Remove oldest data from queue & return it.
+        // and (b) we have the lock. Remove oldest data from queue & return it.
         T result = _deque.front();
         _deque.pop_front();
         return result;
+    }
+
+    //throws a ThreadInterruptedException in (one of) the blocking threads
+    void Interrupt()
+    {
+    	_waiter.interrupt();
     }
 };
 

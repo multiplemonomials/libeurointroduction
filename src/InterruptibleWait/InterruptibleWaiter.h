@@ -8,9 +8,14 @@
 #ifndef INTERRUPTIBLEWAITER_H_
 #define INTERRUPTIBLEWAITER_H_
 
-#include <pthread.h>
+#include <mutex>
 #include <chrono>
 #include <condition_variable>
+
+/*
+ * NOTE: while there's nothing preventing multiple threads from using this object aat the same time,
+ * interrupt() and awaken() will target one at random
+ */
 
 class InterruptibleWaiter
 {
@@ -20,30 +25,30 @@ private:
 	//used to communicate to the waiting thread that it was interrupted
 	volatile bool _wasInterrupted;
 
-	// true if the program is currently waiting on the condition variable
-	// so it's not OK to start another block
-	volatile bool _isCurrentlyBlocking;
-
 	std::condition_variable _conditionVariable;
 
 	std::mutex _mutex;
 
 
-
 public:
+
+	//wait until somebody calls awaken() or block() on the waiter
+	//unlocks the supplied unique_lock, blocks, and then re-locks it
+	void block(std::unique_lock<std::mutex> & callersLock);
 
 	//wait until somebody calls awaken() or block() on the waiter
 	void block();
 
 	//wait for the provided time or until interrupt() or awaken() is called
-	void wait(unsigned long milliseconds);
+	//returns true if the timer expired false if the thread was awoken
+	bool wait(unsigned long milliseconds);
 
 	//interrupt the blocking thread if there is one, throwing an interruptedexception
 	//returns true if a thread was interrupted, false if not
-	bool interrupt();
+	void interrupt();
 
 	//awaken the wating or blocking thread.  Does not throw an interruptedexception
-	bool awaken();
+	void awaken();
 
 	InterruptibleWaiter();
 

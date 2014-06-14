@@ -1,4 +1,4 @@
-#include "functimer.hpp"
+#include "functimer.h"
 #include <Util/DefineZeroedStruct.h>
 	
 scoped_function_timer::scoped_function_timer(std::string funcName)
