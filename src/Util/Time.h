@@ -6,6 +6,7 @@
 
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/thread.hpp>
+#include <chrono>
 
 /*-----------------------------------------------------------------------------
     Very thin adaptor to bring the boost::posix_time stuff out in a more
@@ -152,6 +153,38 @@ struct Time
     static std::string ToIsoExtendedString(Timepoint const & timepoint)
     {
         return boost::posix_time::to_iso_extended_string(timepoint);
+    }
+
+    /*-----------------------------------------------------------------------------
+        std::chrono conversion.
+     ----------------------------------------------------------------------------*/
+
+    //convert Time::Timepoint to std::chrono::time_point
+    //accurate to the nanosecond
+    inline static std::chrono::time_point<std::chrono::system_clock, std::chrono::nanoseconds> TimepointToChrono(const boost::posix_time::ptime& from)
+    {
+        boost::posix_time::time_duration const time_since_epoch = from - boost::posix_time::from_time_t(0);
+        std::chrono::time_point<std::chrono::system_clock, std::chrono::nanoseconds> t = std::chrono::system_clock::from_time_t(time_since_epoch.total_seconds());
+        long nsec = time_since_epoch.fractional_seconds() * (1000000000 / time_since_epoch.ticks_per_second());
+        return t + std::chrono::nanoseconds(nsec);
+
+    }
+
+    template <class Clock, class Duration>
+    inline static Timepoint ChronoToTimepoint(const std::chrono::time_point<Clock, Duration>& from)
+    {
+        typedef std::chrono::nanoseconds duration_t;
+        typedef duration_t::rep rep_t;
+        rep_t d = std::chrono::duration_cast<duration_t>(from.time_since_epoch()).count();
+        rep_t sec = d/1000000000;
+        rep_t nsec = d%1000000000;
+        return boost::posix_time::from_time_t(0)+
+        boost::posix_time::seconds(static_cast<long>(sec))+
+        #ifdef BOOST_DATE_TIME_HAS_NANOSECONDS
+        boost::posix_time::nanoseconds(nsec);
+        #else
+        boost::posix_time::microseconds((nsec+500)/1000);
+        #endif
     }
 };
 
