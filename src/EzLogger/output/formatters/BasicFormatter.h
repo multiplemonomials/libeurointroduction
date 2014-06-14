@@ -10,7 +10,6 @@
 
 #include <memory>
 #include <sstream>
-#include <boost/foreach.hpp>
 
 #include "../../LogMessage.h"
 
@@ -19,7 +18,7 @@ struct BasicFormatter
 	std::string operator()(std::shared_ptr<LogMessage> messagePtr)
 	{
 		std::ostringstream ostringstream;
-		BOOST_FOREACH(LogMessage::TagMapElementType tag, messagePtr->getTags())
+		for(LogMessage::TagMapElementType tag : messagePtr->getTags())
 		{
 			ostringstream << "[" << tag.first << ": " << tag.second << "] ";
 		}

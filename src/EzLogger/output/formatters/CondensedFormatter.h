@@ -18,8 +18,9 @@ struct CondensedFormatter
 {
 	std::string operator()(std::shared_ptr<LogMessage> messagePtr)
 	{
+
 		std::ostringstream ostringstream;
-		BOOST_FOREACH(LogMessage::TagMapElementType tag, messagePtr->getTags())
+		for(LogMessage::TagMapElementType tag : messagePtr->getTags())
 		{
 			ostringstream << "[" << tag.second << "] ";
 		}

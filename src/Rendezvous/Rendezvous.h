@@ -4,7 +4,8 @@
 #ifndef RENDEZVOUS_H_
 #define RENDEZVOUS_H_
 
-#include <boost/thread/thread.hpp>
+#include <mutex>
+#include <condition_variable>
 
 #include "RendezvousBase.h"
 #include <Util/Time.h>
@@ -31,8 +32,8 @@
 class Rendezvous : public RendezvousBase
 {
     // Mutex and synchronizer used to coordinate things.
-    mutable boost::mutex                            _mutex;
-    mutable boost::condition_variable               _waiters;
+    mutable std::mutex                            _mutex;
+    mutable std::condition_variable               _waiters;
 
 
     // True if Notify() has been called since construction.

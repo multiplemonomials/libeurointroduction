@@ -46,11 +46,11 @@ void InterruptibleWaiter::block(std::unique_lock<std::mutex> & callersLock)
 	return;
 }
 
-bool InterruptibleWaiter::wait(unsigned long milliseconds)
+bool InterruptibleWaiter::wait(Time::Duration duration)
 {
 	std::unique_lock<std::mutex> lock(_mutex);
 
-	std::cv_status waitResult = _conditionVariable.wait_for(lock, std::chrono::milliseconds(milliseconds));
+	std::cv_status waitResult = _conditionVariable.wait_until(lock, Time::TimepointToChrono(Time::GetTime() + duration));
 
 	if(_wasInterrupted == true)
 	{

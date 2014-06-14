@@ -8,10 +8,11 @@
 #define LOGOUTPUT_H_
 
 #include <memory>
-#include <boost/thread/thread.hpp>
+#include <thread>
 
 #include "../LogMessage.h"
 #include "../../ThreadSafeQueue/ThreadSafeQueue.h"
+#include "../../InterruptibleWait/ThreadInterruptedException.h"
 
 // base class so functions can accept an unknown template
 class LogOutputBaseClass
@@ -28,13 +29,11 @@ class LogOutput : public LogOutputBaseClass
 	//holds all of the messages to be logged
 	ThreadSafeQueue<std::shared_ptr<LogMessage>> _inputQueue;
 
-	volatile bool _shouldStop;
-
 	std::shared_ptr<Acceptor_T> _acceptorPtr;
 	std::shared_ptr<Formatter_T> _formatterPtr;
 	std::shared_ptr<Writer_T> _writerPtr;
 
-	boost::thread _objectThread;
+	std::thread _objectThread;
 
 	//is run in a different thread.
 	//(every logger object has its own thread)
@@ -42,14 +41,13 @@ class LogOutput : public LogOutputBaseClass
 	//run by the object's thread
 	void run()
 	{
-		while(!_shouldStop)
+		try
 		{
-			//blocks until there is a message
-			std::shared_ptr<LogMessage> messagePtr = _inputQueue.Dequeue();
-
-
-			if(!_shouldStop)
+			while(true)
 			{
+				//blocks until there is a message
+				std::shared_ptr<LogMessage> messagePtr = _inputQueue.Dequeue();
+
 				if((*_acceptorPtr)(messagePtr))
 				{
 					std::string messageText = (*_formatterPtr)(messagePtr);
@@ -57,12 +55,15 @@ class LogOutput : public LogOutputBaseClass
 				}
 			}
 		}
+		catch(ThreadInterruptedException & error)
+		{
+			return;
+		}
 	}
 public:
 
 	LogOutput(std::shared_ptr<Acceptor_T> acceptorPtr, 	std::shared_ptr<Formatter_T> formatterPtr, std::shared_ptr<Writer_T> writerPtr)
 	:_inputQueue(),
-	 _shouldStop(false),
 	 _acceptorPtr(acceptorPtr),
 	 _formatterPtr(formatterPtr),
 	 _writerPtr(writerPtr),
@@ -76,7 +77,6 @@ public:
 	//use this if all of the template arguments have no-argument constructors
 	LogOutput()
 	:_inputQueue(),
-	 _shouldStop(false),
 	 _acceptorPtr(std::make_shared<Acceptor_T>()),
 	 _formatterPtr(std::make_shared<Formatter_T>()),
 	 _writerPtr(std::make_shared<Writer_T>()),
@@ -94,12 +94,9 @@ public:
 	virtual ~LogOutput()
 	{
         //in this destructor we have to get the thread out of waiting at its condition_variable.
-        //so we Enqueue an empty LogMessage
-        _shouldStop = true;
+		//luckily, we have InterruptibleWait.
 
-        std::shared_ptr<LogMessage> message(new LogMessage({{"foo", "bar"}}));
-
-        _inputQueue.Enqueue(message, true);
+        _inputQueue.Interrupt();
 
         _objectThread.join();
 	}

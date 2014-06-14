@@ -12,6 +12,8 @@
 #include <chrono>
 #include <condition_variable>
 
+#include "../Util/Time.h"
+
 /*
  * NOTE: while there's nothing preventing multiple threads from using this object aat the same time,
  * interrupt() and awaken() will target one at random
@@ -41,7 +43,7 @@ public:
 
 	//wait for the provided time or until interrupt() or awaken() is called
 	//returns true if the timer expired false if the thread was awoken
-	bool wait(unsigned long milliseconds);
+	bool wait(Time::Duration duration);
 
 	//interrupt the blocking thread if there is one, throwing an interruptedexception
 	//returns true if a thread was interrupted, false if not
