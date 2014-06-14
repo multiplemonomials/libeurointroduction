@@ -20,7 +20,7 @@ Queue template that can be safely shared by multiple threads.
 #include <queue>
 #include <mutex>
 #include <condition_variable>
-#include <InterruptibleWait/InterruptibleWaiter.h>
+#include "../InterruptibleWait/InterruptibleWaiter.h"
 
 
 /*-----------------------------------------------------------------------------

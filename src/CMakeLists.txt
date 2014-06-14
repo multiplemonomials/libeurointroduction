@@ -20,25 +20,25 @@ file(GLOB ezlogger_HEADERS
     "EzLogger/output/*.h"
 )
 
-install(FILES ${ezlogger_HEADERS} DESTINATION ${header_destination}/EzLogger)
+install(FILES ${ezlogger_HEADERS} DESTINATION ${header_destination}/EzLogger/output)
 
 file(GLOB ezlogger_HEADERS
     "EzLogger/output/formatters/*.h"
 )
 
-install(FILES ${ezlogger_HEADERS} DESTINATION ${header_destination}/EzLogger)
+install(FILES ${ezlogger_HEADERS} DESTINATION ${header_destination}/EzLogger/output/formatters)
 
 file(GLOB ezlogger_HEADERS
     "EzLogger/output/acceptors/*.h"
 )
 
-install(FILES ${ezlogger_HEADERS} DESTINATION ${header_destination}/EzLogger)
+install(FILES ${ezlogger_HEADERS} DESTINATION ${header_destination}/EzLogger/output/acceptors)
 
 file(GLOB ezlogger_HEADERS
     "EzLogger/output/writers/*.h"
 )
 
-install(FILES ${ezlogger_HEADERS} DESTINATION ${header_destination}/EzLogger)
+install(FILES ${ezlogger_HEADERS} DESTINATION ${header_destination}/EzLogger/output/writers)
 
 #ThreadSafeQueue
 install(FILES ThreadSafeQueue/ThreadSafeQueue.h DESTINATION ${header_destination}/ThreadSafeQueue)
