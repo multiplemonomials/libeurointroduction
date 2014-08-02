@@ -26,7 +26,7 @@ set (LEI_VERSION_MINOR 0)
 #enables debug flags
 SET(CMAKE_BUILD_TYPE relwithdebinfo)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} --std=gnu++11 -Wall -pthread -Og ${wxWidgets_DEFINITIONS}")
+set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} --std=gnu++11 -Wall -pthread -Og")
 
 set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-g")
 
